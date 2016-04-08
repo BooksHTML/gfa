@@ -10,6 +10,33 @@
 <chapter xml:id="introduction">
     <title>Introduction</title>
 
+    <p>Git, henceforth <c>git</c>, is a <term>revision control system</term>.  What's that?  It is a tool to record changes to software, a tool to experiment with changes to software, and a tool to collaborate creating software.  Why might an author want to use a tool designed to keep track of software?  Presumably your writing is in an electronic form, and you may want to keep track of your work, you may want to experiment with different approaches to your writing, and you may collaborate with others, not least perhaps a copyeditor and an editor.</p>
 
+    <p><c>git</c> has a powerful feature, know as <term>branching</term>, which allows you to branch off in two different directions with your writing.  You can decide to tie the two branches back together later, with a process known as a <term>merge</term> or you can decide to keep one branch, and kill off the other.  On a collaborative project, two different contributors can work on two unrelated personal branches of the same project.  These branches can be local to their own computers, with neither contributor aware of, or concerned about, the other's work.  If their work is independent, then both contributor's additions may be merged into the project separately, or if their work overlaps, <c>git</c> can be used to resolve the overlaps.</p>
 
+    <example xml:id="hero-heroine">
+        <title>Heroine versus Hero</title>
+
+        <p>Let us consider an example.  Suppose you are well along on writing the next Pulitzer Prize winning novel.  But you cannot figure out how you want it to end?  In one scenario, the hero dies, and in another scenario the heroine dies.  You might choose to make two copies of your novel in different directories and work on separate endings, eventually choosing one over the other.  But let us suppose that in the course of doing this work in two different directories, you think of a great new way to develop your two characters in the early chapters.  So now you need to make the same edits to both copies?  Or maybe your novel is spread across several files, one per chapter, and you just need to edit a few early files in one version and copy just those files over to the other directory (hopefully not overwriting some other work there).  This sounds a bit tedious, maybe complicated, and likely error-prone.</p>
+
+        <p>Let us see how <c>git</c> would handle this.  Originally you are working on the main branch, almost always named <c>master</c>.  Once ready to create two different endings, you would split <c>master</c> into two branches, perhaps named <c>hero</c> and <c>heroine</c>.  You can now work on the two different branches, switching between them at will.  When you get your idea to improve the early character development, you can switch back to the <c>master</c> branch, edit your early chapters in a way that is common to both of your endings, then return to alternately working on your <c>heroine</c> and <c>hero</c> branches.  You only ever have one copy of your early work, and if you ever make two different overlapping changes, there are procedures for managing those conflicts.</p>
+    </example>
+
+    <p>That example is a bit contrived, but basically realistic.  And there is necessarily some hand-waving in how <c>git</c> helps you.  We will guide you carefully through a similar application of <c>git</c> in <xref ref="hero-heroine-edit" />.</p>
+
+    <p>To use <c>git</c> you need to author with source files that are simple ASCII text.  So that likely means using some markup language like <latex />, MathBook XML, Markdown, reStructured Text, or a similar language supported by <c>pandoc</c>.  XML formats for Word files might work out acceptably, but will be less than perfect.  We are also going to show you how to use <c>git</c> at the command-line in a terminal, so you might need to consult a tutorial on command lines and file management.  We have some quickstart information on <c>git</c> itself in <xref ref="git-start" />.</p>
+
+    <p><c>git</c> provides some powerful tools, and perhaps as a corollary, has a steep learning curve.  There is no <em>right way</em> to use <c>git</c>, and the way you choose to employ it may in large part depend on social aspects of your project and its organization.  We will organize our initial material according to the number of contributors and the organizational structure of the people in your project: solo contributor (<xref ref="solo" />), a few collegial contributors (<xref ref="friends" />), or many contributors with a central authority (<xref ref="control" />).  Read all of these chapters, and read them in order, even if you know which model you might want to eventually employ.  The techniques, concepts and principles build on each other, and there are no firm rules about numbers, procedures or organizational models.  It is even possible they will fluctuate over the lifetime of a project.</p>
+
+    <p>We will distill some of the essential concepts of <c>git</c> into a short series of <term>Principles</term>.  Review them often, until you feel you understand them well, and it will be much easier to grasp the finer details of <c>git</c>.</p>
+
+    <principle xml:id="principle-git-tool">
+        <title><c>git</c> is a Tool</title>
+
+        <statement>
+            <p><c>git</c> is a tool that can be adapted to many purposes and projects, in many different ways.</p>
+        </statement>
+    </principle>
+
+    <p>Discussions on the Internet about <em>how best</em> to use <c>git</c> can generate a lot of heat, but not much light.  Ignore them.  Understand how the tool works, and employ it to make your real work more productive, efficient and enjoyable.</p>
 </chapter>
