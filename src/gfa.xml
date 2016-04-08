@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- This file is part of the book                -->
+<!--                                              -->
+<!--       Git for Authors                        -->
+<!--                                              -->
+<!-- Copyright (C) 2016  Robert A. Beezer         -->
+<!-- See the file COPYING for copying conditions. -->
+
+<mathbook xmlns:xi="http://www.w3.org/2001/XInclude">
+
+    <book xml:id="git-for-authors">
+        <title>Git for Authors</title>
+
+        <xi:include href="frontmatter.xml" />
+        <xi:include href="introduction.xml" />
+        <xi:include href="backmatter.xml" />
+
+    </book>
+
+</mathbook>
