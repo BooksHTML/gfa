@@ -14,6 +14,7 @@
 
         <xi:include href="frontmatter.xml" />
         <xi:include href="introduction.xml" />
+        <xi:include href="solo.xml" />
         <xi:include href="backmatter.xml" />
 
     </book>
