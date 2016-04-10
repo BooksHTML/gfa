@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This file is part of the book                -->
+<!--                                              -->
+<!--       Git for Authors                        -->
+<!--                                              -->
+<!-- Copyright (C) 2016  Robert A. Beezer         -->
+<!-- See the file COPYING for copying conditions. -->
+
+<chapter xml:id="control">
+    <title>In Control</title>
+
+    <p>A centrally managed repository.  Pull requests, creating and merging.  Fork on GitHub.  A medium group with a few admins, a large group with a release manager (Sage), crowdsourcing for typos or a new dramatic ending.  Directed acyclic graph.</p>
+
+</chapter>

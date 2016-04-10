@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <!-- This file is part of the book                -->
 <!--                                              -->
@@ -7,10 +7,15 @@
 <!-- Copyright (C) 2016  Robert A. Beezer         -->
 <!-- See the file COPYING for copying conditions. -->
 
-<backmatter xml:id="backmatter" xmlns:xi="http://www.w3.org/2001/XInclude">
+<appendix xml:id="git-start">
+    <title>Getting Started with <c>git</c></title>
 
-    <xi:include href="git-start.xml" />
-    <xi:include href="github-start.xml" />
-    <xi:include href="resources.xml" />
+    <p>command line, not interface</p>
 
-</backmatter>
+    <p>name, editor, push strategy</p>
+
+    <p>init in a directory, portable</p>
+
+    <p>.gitignore</p>
+
+</appendix>

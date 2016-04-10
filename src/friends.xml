@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This file is part of the book                -->
+<!--                                              -->
+<!--       Git for Authors                        -->
+<!--                                              -->
+<!-- Copyright (C) 2016  Robert A. Beezer         -->
+<!-- See the file COPYING for copying conditions. -->
+
+<chapter xml:id="friends">
+    <title>With a Few Friends</title>
+
+    <p>Working with a small group of equals, all with push permission to a central repository (on GitHub).  Resolving merge conflicts locally.  Example with two repositories and GitHub.</p>
+
+    <p>Push strategy.</p>
+
+</chapter>
+

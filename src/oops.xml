@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <!-- This file is part of the book                -->
 <!--                                              -->
@@ -7,10 +7,9 @@
 <!-- Copyright (C) 2016  Robert A. Beezer         -->
 <!-- See the file COPYING for copying conditions. -->
 
-<backmatter xml:id="backmatter" xmlns:xi="http://www.w3.org/2001/XInclude">
+<chapter xml:id="oops">
+    <title>Oops!</title>
 
-    <xi:include href="git-start.xml" />
-    <xi:include href="github-start.xml" />
-    <xi:include href="resources.xml" />
+    <p>Sections with titles describing problems, content is fixes.  General overarching advice (stop quickly, diagnostics,directory backup, reflog).</p>
 
-</backmatter>
+</chapter>

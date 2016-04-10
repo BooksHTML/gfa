@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <!-- This file is part of the book                -->
 <!--                                              -->
@@ -7,10 +7,10 @@
 <!-- Copyright (C) 2016  Robert A. Beezer         -->
 <!-- See the file COPYING for copying conditions. -->
 
-<backmatter xml:id="backmatter" xmlns:xi="http://www.w3.org/2001/XInclude">
+<references xml:id="github-start">
+    <title>Resources</title>
 
-    <xi:include href="git-start.xml" />
-    <xi:include href="github-start.xml" />
-    <xi:include href="resources.xml" />
+    <biblio xml:id="git-book" type="raw">The Git Book</biblio>
+    <biblio xml:id="github-site" type="raw">GitHub Site</biblio>
 
-</backmatter>
+</references>

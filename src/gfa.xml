@@ -15,6 +15,10 @@
         <xi:include href="frontmatter.xml" />
         <xi:include href="introduction.xml" />
         <xi:include href="solo.xml" />
+        <xi:include href="friends.xml" />
+        <xi:include href="control.xml" />
+        <xi:include href="branch-management.xml" />
+        <xi:include href="oops.xml" />
         <xi:include href="backmatter.xml" />
 
     </book>
