@@ -31,7 +31,7 @@
     <p>We will distill some of the essential concepts of <c>git</c> into a short series of <term>Principles</term>.  Review them often, until you feel you understand them well, and it will be much easier to grasp the finer details of <c>git</c>.</p>
 
     <principle xml:id="principle-git-tool">
-        <title><c>git</c> is a Tool</title>
+        <title>git is a Tool</title>
 
         <statement>
             <p><c>git</c> is a tool that can be adapted to many purposes and projects, in many different ways.</p>

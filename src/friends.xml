@@ -8,11 +8,11 @@
 <!-- See the file COPYING for copying conditions. -->
 
 <chapter xml:id="friends">
-    <title>With a Few Friends</title>
+    <title>(*) With a Few Friends</title>
 
     <p>Working with a small group of equals, all with push permission to a central repository (on GitHub).  Resolving merge conflicts locally.  Example with two repositories and GitHub.</p>
 
-    <p>Push strategy.</p>
+    <p>Push strategy. Be sure to see the configurration note on </p>
 
 </chapter>
 

@@ -10,21 +10,23 @@
 <chapter xml:id="solo">
     <title>All By Yourself</title>
 
-    <p><c>git</c> is at its best when people collaborate, but it can still be valuable to an individual, and you may gain collaborators or contributors in the later stages of a project.  We can understand some basic concepts by considering first the simple situation of a single, solo contributor.</p>
+    <introduction>
+        <p><c>git</c> is at its best when people collaborate, but it can still be valuable to an individual, and you may gain collaborators or contributors in the later stages of a project.  We can understand some basic concepts by considering first the simple situation of a single, solo contributor.</p>
 
-    <p>You will not fully appreciate all of our Principles on a first reading, but if you come back to review them, they may be more useful on each reading.  Here is one such.</p>
+        <p>You will not fully appreciate all of our Principles on a first reading, but if you come back to review them, they may be more useful on each reading.  Here is one such.</p>
 
-    <principle xml:id="principle-manage-changes">
-        <title><c>git</c> Manages Changes</title>
+        <principle xml:id="principle-manage-changes">
+            <title>git Manages Changes</title>
 
-        <statement>
-            <p><c>git</c> manages collections of changes to your files.  And it does so in linear sequences of incremental changes that are always consistent.</p>
-        </statement>
-    </principle>
+            <statement>
+                <p><c>git</c> manages collections of changes to your files.  And it does so in linear sequences of incremental changes that are always consistent.</p>
+            </statement>
+        </principle>
 
-    <p>You may be very comfortable with organizing your writing as a collection of files, perhaps further organized in a series of directories or folders, perhaps even nested several levels deep.  <c>git</c> works on, and manipulates, your files for you, which can be disconcerting at some point.  The objects that <c>git</c> stores and tracks are collections of <em>changes</em> to your files.  One such collection might make several small changes to several different files (perhaps you renamed a character in your novel throughout your book), or the change may be to add a new file (a new chapter, say).  As you instruct <c>git</c> to move between branches, you might see your character's name change back and forth, or you might see your new chapter entirely disappear, only to reappear later.  The files in your project are the cumulative result of many changes applied in sequence, not some final state that never regresses to an earlier state.  But don't panic, <c>git</c> has all your changes stored away safely.  <c>git</c> manages changes to your files, and those changes are accumulated in files, whose state may change in ways you are not accustomed to.</p>
+        <p>You may be very comfortable with organizing your writing as a collection of files, perhaps further organized in a series of directories or folders, perhaps even nested several levels deep.  <c>git</c> works on, and manipulates, your files for you, which can be disconcerting at some point.  The objects that <c>git</c> stores and tracks are collections of <em>changes</em> to your files.  One such collection might make several small changes to several different files (perhaps you renamed a character in your novel throughout your book), or the change may be to add a new file (a new chapter, say).  As you instruct <c>git</c> to move between branches, you might see your character's name change back and forth, or you might see your new chapter entirely disappear, only to reappear later.  The files in your project are the cumulative result of many changes applied in sequence, not some final state that never regresses to an earlier state.  But don't panic, <c>git</c> has all your changes stored away safely.  <c>git</c> manages changes to your files, and those changes are accumulated in files, whose state may change in ways you are not accustomed to.</p>
 
-    <p>If that sounds scary, realize I am self-taught when it comes to <c>git</c> and have never lost any work.  I have panicked.  I have gained valuable experience puzzling my way out of some jams (see <xref ref="oops" />).  And once I ended up applying the same collection of changes twice, mysteriously getting two of everything in a chapter (see <xref provisional="stash-pop-or-apply" />).</p>
+        <p>If that sounds scary, realize I am self-taught when it comes to <c>git</c> and have never lost any work.  I have panicked.  I have gained valuable experience puzzling my way out of some jams (see <xref ref="oops" />).  And once I ended up applying the same collection of changes twice, mysteriously getting two of everything in a chapter (see <xref provisional="stash-pop-or-apply" />).</p>
+    </introduction>
 
     <section>
         <title>Commits</title>
@@ -198,7 +200,7 @@
                 </console>
                 <p>Notice that <em>all</em> of the commits for the beginning of the story, prior to our typo fix are not shown in this output because they are now common to all the branches.</p>
 
-                <p>Before you experiment too much, checkkout the <c>hero</c> branch, and as beforehand, run <c>git log</c>.  You should see that the first commit (hero dies) has a <em>totally different</em> commit hash, the second commit is the typo fix (which was not evident beforehand), and the present third commit is the previous second commit, with the <em>identical</em> commit hash.  We will discuss this outside of the exercise.  Now, explore your repository thorougly with the various commands and diagnostics you have learned.</p>
+                <p>Before you experiment too much, checkout the <c>hero</c> branch, and as beforehand, run <c>git log</c>.  You should see that the first commit (hero dies) has a <em>totally different</em> commit hash, the second commit is the typo fix (which was not evident beforehand), and the present third commit is the previous second commit, with the <em>identical</em> commit hash.  We will discuss this outside of the exercise.  Now, explore your repository thorougly with the various commands and diagnostics you have learned.</p>
 
                 <p>That is it, we are done.  Notice that you are maintaining two versions of your novel, can easily switch between working on one or the other, and you can edit common material just once in a way that is reflected in each version.  If you made a mess of this (which might be a good thing), just start over with a new repository having a single commit with your three files all added in at once and make a do-over.  Or maybe  repeat the exercise with extra commits on each branch for a fuller experience and to solidify your new skills.</p>
             </statement>

@@ -8,7 +8,9 @@
 <!-- See the file COPYING for copying conditions. -->
 
 <chapter xml:id="branch-management">
-    <title>Branch Management</title>
+    <title>(*) Branch Management</title>
+
+    <p>Reference principle, always working on a branch</p>
 
     <p>interactive rebase, total squash and rebuild commits, grafting</p>
 
