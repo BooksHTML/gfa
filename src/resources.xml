@@ -10,7 +10,8 @@
 <references xml:id="github-start">
     <title>Resources</title>
 
-    <biblio xml:id="git-book" type="raw">The Git Book</biblio>
-    <biblio xml:id="github-site" type="raw">GitHub Site</biblio>
+    <biblio xml:id="git-site" type="raw"><title>Git Site</title>, <url href="https://git-scm.com/" />.</biblio>
+    <biblio xml:id="github-site" type="raw"><title>GitHub Site</title>, <!-- <url href="https://git-scm.com/" /> -->.</biblio>
+    <biblio xml:id="git-book" type="raw"><title>Pro Git</title>, Scott Chacon and Ben Straub, <url href="https://git-scm.com/book/en/v2" />.</biblio>
 
 </references>
