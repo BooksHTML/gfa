@@ -50,7 +50,11 @@
 
         <p>OK, that is a basic recipe, but what actually happened?  In the <c>add</c> command you would have listed some, or all, of the files you had edited and saved.  If you only listed some, the commit would only contain some of your changes, and the remaining changes would contribute to keeping your working directory dirty.  The <c>add</c> command moves your changes to a staging area, a sort of purgatory, called the <term>index</term>.  You can incrementally add changes to the index to form a coherent set of changes that will become a commit.  For example, you could have run the <c>add</c> command several times, once for each file, to stage the same collection of changes.</p>
 
+        <p>Realize that <c>git add</c> does two similar things.  If <c>git</c> is unaware of some file, then <c>add</c> will make it one of the files that <c>git</c> <term>tracks</term> and will put the current contents of that file into the index.  And from now on, <c>git</c> will include relevant details about this file.  For example if the file is dirty, then certain reports will show the changes (see next paragraph).  But <q>tracking</q> <em>does not</em> mean <c>git</c> keeps track of changes.  You have control of which changes <c>git</c> manages, and when <c>git</c> becomes aware of them.  Subsequently, <c>git add</c> moves changes from a file into the index, and you can do this repeatedly to update which collection of changes are staged in the index.</p>
+
         <p>With all this talk of a dirty directory, how can you tell if your directory is even dirty at all?  The command is <c>git diff</c>.  It takes no action and is merely informative.  You can run it anytime you like and it is wise to do it often, especially when getting started.  I often walk away from my writing with a dirty directory (not best practice).  So it is a good habit I have to <em>always</em> run <c>git diff</c> when I first return to a project.  The output of <c>git diff</c> is all of the changes in your working directory that are not staged into the index.  It is organized by file (given in yellow on my computer), with red text being removed and green text being added.  White text is unchanged and provides context for changed text, in order to help <c>git</c> apply changes in the right places.  Solid red squares or bars are extraneous whitespace that serves no purpose other than to potential confuse <c>git</c>.  It is a good idea to become comfortable understanding this information.  When all your changes are in the index, your working directory is now clean, and <c>git diff</c> reports nothing.</p>
+
+        <p><c>git diff</c> drops you into a simple program known as a <term>pager</term>.  The down and up arrows work to scroll through the output, the spacebar advances by a screenful, and the <c>b</c> key takes you back a screenful.  Press <c>h</c> for help on more commands, and use <c>q</c> to quit and exit.</p>
 
         <p>As you add changes to the index, you can see what your future commit looks like by running <c>git diff --cached</c>, which will report the accumulated changes in the index.</p>
 
@@ -74,7 +78,7 @@
             <statement>
                 <ol>
                     <li>
-                        <p>Consult the appendix and setup <c>git</c> and <c>init</c> an empty repository.</p>
+                        <p>Consult <xref ref="git-start" /> for instructions, setup <c>git</c>, and <c>init</c> an empty repository.</p>
                     </li>
                     <li>
                         <p>Make several commits, creating and adding at least three files into the repository.  Use <c>git diff</c>, <c>git diff --cached</c>, <c>git status</c>, and <c>git log</c> liberally in the process.</p>
@@ -156,7 +160,7 @@
                 </console>
                 <p>Now this is interesting.  You have three branches, you are <q>on</q> the <c>hero</c> branch, and the <c>heroine</c> and <c>hero</c> branches contain divergent storylines based on a common beginning. (Everything up to <c>master</c> is common and not reported.)  Experiment checking out different branches, run <c>show-branch</c> liberally, and do not foget that you can do things like <c>git show hero</c> even if you are not presently on the <c>hero</c> branch.  Get comfortable with the current state of your repository.  Notice that each of our two new branches could each be a sequence of many commits, but we just need one commit each for the purposes of this exercise.</p>
 
-                <p>As you looked around, did you notice that typographical error you maade in the third file when you first start writing?  (If not, play along.)  Checkout the <c>master</c> branch, open the file with the typo and and edit to correct the mistake.  Commit those changes.</p>
+                <p>As you looked around, did you notice that typographical error you made in the third file when you first start writing?  (If not, play along.)  Checkout the <c>master</c> branch, open the file with the typo and and edit to correct the mistake.  Commit those changes.</p>
                 <console>
                     <prompt>rob@lava:~/books/ppw$ </prompt>
                     <input>git show-branch</input>
