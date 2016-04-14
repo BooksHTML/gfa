@@ -39,4 +39,6 @@
     </principle>
 
     <p>Discussions on the Internet about <em>how best</em> to use <c>git</c> can generate a lot of heat, but not much light.  Ignore them.  Understand how the tool works, and employ it to make your real work more productive, efficient and enjoyable.</p>
+
+    <p>You will find that <c>git</c> is like a garage door opener.  You wonder why you ever need one, but once you get it, you can't live without it.  Or to extend the automotive motif, it is like a seat belt<ndash />you feel unsafe without it.  Enjoy getting to know <c>git</c>.</p>
 </chapter>

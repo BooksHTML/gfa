@@ -16,4 +16,10 @@
 
     <p>stash, "I'll just be a minute"</p>
 
+    <p>branch rename, prior to public PR</p>
+
+    <p>cherry-pick</p>
+
+    <p>don't rebase through branch points, might lose one</p>
+
 </chapter>
