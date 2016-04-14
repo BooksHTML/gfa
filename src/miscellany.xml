@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This file is part of the book                -->
+<!--                                              -->
+<!--       Git for Authors                        -->
+<!--                                              -->
+<!-- Copyright (C) 2016  Robert A. Beezer         -->
+<!-- See the file COPYING for copying conditions. -->
+
+<chapter xml:id="oops">
+    <title>Git Miscellany</title>
+
+    <introduction>
+        <p>This final chapter is a loose collection of tidbits that you may find useful, without getting too technical or arcane.  We have not tried to cover everything, and we may have told you a few white lies along the way.  So when you exhaust what we have here, re-read the conclusion at the end of this chapter.</p>
+    </introduction>
+
+    <section>
+        <title>X</title>
+
+        <p>Odds and sods</p>
+    </section>
+
+    <section>
+        <title>Conclusion</title>
+
+        <p>There are often many ways to accomplish the same thing in <c>git</c>, and some will be easier than others.  You can find lots of advice on the Internet, some of it is even good.  Sites where answers get upvoted or downvoted are often useful.  As you gain a good understanding of the basic principles of how <c>git</c> works and the job it has been designed for, you will get better at locating and evaluating suggestions.  We have tried to give you a headstart on that basic understanding.  Take notes when you find good stuff that works for you.  (Much of the later bits and pieces here are inspired by our own notes accumulated through our first three years of gaining valuable experince with <c>git</c>.)</p>
+
+        <p>Beware of dogma.  Some will say you should <em>never</em> rewrite history<ndash />we do it <em>all</em> the time.  Others will say you should always do fast-forward merges and obtain a perfectly linear history<ndash />impossible on a big public project.  Use your independent judgement, and always remember <xref ref="principle-git-tool" />.</p>
+
+        <p>But most of all, have fun and don't panic!</p>
+    </section>
+
+</chapter>
