@@ -8,393 +8,252 @@
 <!-- See the file COPYING for copying conditions. -->
 
 <chapter xml:id="control">
-    <title>(*) In Control</title>
+    <title>In Control</title>
 
-    <p>A centrally managed repository.  Pull requests, creating and merging.  Fork on GitHub.  A medium group with a few admins, a large group with a release manager (Sage), crowdsourcing for typos or a new dramatic ending.  Directed acyclic graph.</p>
+    <introduction>
+        <p>We now turn to the situation where your book may have numerous collaborators. Maybe your book is an anthology of short stories with thirty contributors, or maybe it is a human anatomy textbook with the potential for students to discover small errors for many, many years down the road.  If the anatomy textbook has four authors, you might begin as colleagues as in <xref ref="friends" />, but later may have specialists reviewing and editing select chapters, until finally the book is published and students suggest changes and corrections for the inevitable Second Edition. <c>git</c> is flexible enough to help you at every step.</p>
+
+        <p>So the model here is a select few that are in control of the repository.  They might be called authors or editors, but we will refer to them generically as <term>overlords</term> (WordNet: <q>a person who has general authority over others</q>).  In our opinion many projects should be large, because you want to encourage people to contribute.</p>
+    </introduction>
 
     <section>
         <title>Creating a Pull Request</title>
 
+        <p>A <term>pull request</term> is a way for a contributor to provide changes to your project, such as new material, suggestions for changes, or corrections, in an <q>embargoed</q> way.  This is perfect when the collaborator is a junior partner in your project, or even a total stranger.  As an overlord you retain control, and as a contributor you have total freedom to craft your contribution exactly as you think it should be, and to make it extremely easy.  For the rest of this section, we will stop supposing the project is yours, but instead, we adopt the point-of-view of a collaborator.  Here is the suggested setup.</p>
 
-Suggestions for how to use GitHub for a large project,
-where "large" refers to the number of contributors.
-In my opinion many projects should be large, because you
-want to encourage new people to contribute.
+        <ul>
+            <li><p>There is one <q>definitive</q> version of the project as a <c>git</c> repository.  It resides on GitHub (see <xref ref="github-start" />).  One or more people have control over the definitive repository (the overlords).  You do not need to know who the overlords are.  Everyone's goal is to have their changes become part of the definitive repository.</p></li>
 
-Suggested setup:
+            <li><p>Every person who want to contribute to the project has a <term>fork</term>, which is a <c>git</c> repository under their own personal account on GitHub.  (Those mysterious people who have control over the definitive repository:  they also have their own forks on their own GitHub accounts.)  A fork is a copy of the definitive repository, and your fork is completely under your control.</p></li>
 
-1. There is one "definitive" version of the source.  It resides
-in a GitHub repository.  One or more people have control over
-that repository.  You don't need to know who they are.
+            <li><p>Everyone who wants to contribute to the project also has a copy of their fork on their own computer.  (We now know of three copies of the project: definitive, your fork on GitHub, your fork on your computer.)  We will refer to this as "the version on your laptop", although your computer might be a desktop machine, or something in the cloud, or something else.  (The technical term for "version on your laptop"is <term>clone</term>, but we will not use that terminology. But keep in mind that the version on your laptop was copied from your fork, not from the definitive version.)</p></li>
 
-Everyone's goal is to contribute to the definitive version.
+            <li>
+                <p>The repository on each contributors's individual laptop knows about two repositories on GitHub:</p>
 
-2. Every person who want to contribute to that project has
-a "fork", which is a repository under their own personal
-account on GitHub.  (Those mysterious people who have
-control over the "definitive" version:  they also have their
-own forks on their own GitHub accounts.)  A fork is a copy
-of the definitive version, and your fork is completely under
-your control.
+                <ul>
+                    <li><p>Their own fork, which is called <c>origin</c>.</p></li>
+                    <li><p>The definitive repository, which is called <c>upstream</c>.</p></li>
+                </ul>
 
-3. Everyone who wants to contribute to the project has a copy
-of their fork on their own computer.  I'll refer to this as
-"the version on their laptop", although their computer might
-be a desktop machine, or something in the cloud, or something
-else.  (The technical term for "version on your laptop"
-is 'clone', but we will not use that terminology. But keep in
-mind that the version on your laptop was copied from your fork,
-not from the definitive version.)
+                <p>Both of these repositories are known and managed as <term>remotes</term> within the repository on the laptop.</p>
+            </li>
+        </ul>
 
-4.  The version on each person's laptop knows about two
-repositories on GitHub:
+        <p>To summarize, everyone has a repository on their laptop.  Everyone has the same <c>upstream</c> remote: it is the definitive repository.  Everyone has a different <c>origin</c>, which is their own personal fork (a repository) in their account on GitHub.  See <xref ref="github-start" /> for details on forking a project on GitHub and setting up your laptop with a copy.)</p>
 
-a) Their own fork, which is called "origin"
-b) The definitive version, which is called "upstream".
+        <p>Once all of that is set up, you go through the exact same cycle every time you want to contribute changes to the project.  You already know how to work with branches, and their usefullness in a personal project, or with a small group.  <xref ref="branch-management" /> is devoted entirely to how you can work effectively with a branch.</p>
 
-Both of those are called "remotes" of the version on the laptop.
+        <p>In a big complicated project, like a calculus textbook, there are lots of different things that may need attention.  Maybe you need to put in the solutions to the problems from Chapter 6, or maybe you need to add a new section on the chain rule to Chapter 4, or maybe you need to edit the introduction to Section 5.3.</p>
 
-To summarize, everyone has a version on their laptop.  Everyone
-has the same "upstream": it is the definitive version.  Everyone
-has a different "origin", which is their fork in their account
-on GitHub.
+        <p>With branches, you know that you could use your repository to productively work on all three tasak, swithcing between them at will.  You would have three different branches, <c>solutions-chap-6</c>, <c>chain-rule-section</c>, <c>intro-section5-3</c>, and in each branch you would be doing something a bit different.</p>
 
-Once all of that is set up, you go through the exact same cycle every
-time you want to contribute changes to the project.  But before
-we describe that process, we need to know about branches.  (Only at
-the workshop will we talk about how to set everything up, because you
-don't really need to understand how to do that: you just need to
-get it done once, and then  forget about it forever.)
+        <p>Why is this good?  There are many reasons, two of which are: (i) You do not need to mess up the working version of the book, because you are just working on a copy, and (ii) independent changes can be evaluated independently.  Item (ii) suggests the following principle.</p>
 
-In a big complicated project, like a textbook, there are lots
-of different things that may need attention.  Maybe you need to
-put in the solutions to the problems in chapter 6, or maybe
-you need to add a section on the chain rule in Chapter 4,
-or maybe you need to edit the introduction to Section 5.3.
+        <principle xml:id="principle-creating-accepting-pull-request">
+            <title>Pull Requests Separate Creation and Approval</title>
 
-The idea of a "branch" is that you make a temporary copy of the
-document for taking care of a specific task -- such as the
-examples listed above.  Maybe you plan do take care of all
-of the things mentioned in the previous paragraph: well then
-you would make 3 different branches, and in each branch you
-would be doing something a bit different.
+            <statement>
+                <p>The process of <em>suggesting</em> changes to the definitive repository of a project is separate from the process of <em>accepting</em> those changes.</p>
+            </statement>
+        </principle>
 
-Why is this good?  Many reasons, two of which are:
-i) You don't need to mess up the working version of the document,
-because you are just working on a copy
-ii) Independent actions can be evaluated independently.
+        <p>This may seem silly if you are thinking in terms of a single person writing a book.  But if the writing and editing is a group effort, and many people are contributing, it makes perfect sense for all changes to require at least two people: the person who wrote the new material, and the person who agreed to add that material to the definitive version.  Notice that the sections of this chapter are organized exactly according to this principle.</p>
 
-Item ii) is significant because of a principle which has not
-been mentioned yet:  the process of *suggesting* a change to the
-"definitive" version is separate from the process of *accepting*
-that change.  This may seem silly if you are thinking in terms of
-a single person writing a book.  But if it is a group effort,
-and many people are contributing, it makes perfect sense for
-all changes to require at least two people: the person who wrote
-the new material, and the person who agreed to add that material
-to the definitive version.
+        <p>So, you make a branch when you are about to start working on some aspect of the document (<xref ref="principle-branch-often" />).  You may work on that branch for just an hour, or for several days, or off-and-on for months.  You may switch to working on other branches.  If it sounds confusing at first, it will not be confusing once you start doing it, and it is totally worth it. For example, suppose you have finished making the solutions to the problems for Chapter 6.  Good, because now you can propose those changes to be included in the definitive repository, and it is no problem that you have not yet finished the other work you are going, because those tasks are on different branches.  And if the overlords review your work promptly, that is nice, but if it takes them some time to do that, you are not hung up waiting for their feedback before you can go back to to editing your new section on the chain rule.  Juggling several writing tasks has just become a whole lot easier.</p>
 
-So, you make a "branch" when you are about to start working on
-some aspect of the document.  You may work on that branch for
-just an hour, or for several days.  You may switch to working on
-other branches.  If it sounds confusing at first, it won't be
-confusing once you start doing it, and it is totally worth it.
-For example, suppose you have finished making the solutions to
-the problems in Chapter 6.  Good, because now you can propose those
-changes to be included in the definitive version, and it is
-no problem that you have not yet finished the other work you
-are going, because those are on different branches.  Juggling
-several things has just become easier.
+        <p>One last bit of terminology:  proposing that the changes in a branch go into the definitive version is called a <term>pull request</term>. As in, <q>I request that the overlords pull my changes into the definitive repository.</q>   Once the authorities accept your pull request, the changes from your branch are now incorporated into the definitive repository and part of the official version of the project.</p>
 
-One least bit of terminology:  proposing that the changes in 
-a branch go into the definitive version is called a "pull request".
-As in "I request that the overlords pull my changes into the
-definitive version."  Once they accept your pull request,
-the changes from your branch are now incorporated into the
-definitive version.
+        <p>Now that we know the purpose and workflow of a pull request, and how to setup our laptop, let us describe the procedure of making a pull request.  Notice that we are leveraging what you already know about branches from <xref ref="solo" /> and what you know about pushing and pulling changes from <xref ref="friends" />.  You will go through the following recipe every time you want to contribute to a project where an overlord will review your contribution.</p>
 
-Now that we understand branches, we can describe the process
-you will go through every time you want to contribute to the
-project.
-# comments after each command
+        <list xml:id="creating-pull-request">
+            <title>Creating a Pull Request</title>
+            <ol>
+                <li>
+                    <p><c>git checkout master</c></p>
+                    <p><c>git pull upstream master</c></p>
+                    <p> Remember that <c>upstream</c> is the name your laptop has for the definitive repository.  This checkout and pull will update your <c>master</c> branch with all of the latest changes that constitute the official version of the project.</p>
+                </li>
 
-git checkout master
-# git is the program that takes care of everything
-# checkout means to switch branches
-# master is the main branch, which you will continually keep
-# up-to-date with the "definitive" version
+                <li>
+                    <p><c>git branch &lt;branch_name&gt;</c></p>
+                    <p>Initate a new branch, named <c>branch_name</c>.  Previously your branch names were disposable, known only to you.  They will now becone part of the public workflow for you and the overlords, so concoct something short but descriptive.  (You can change this name <em>before</em> making it public, <xref ref="branch-management" />.)</p>
+                </li>
 
-# So now we are on you master branch.
+                <li>
+                    <p><c>git checkout &lt;branch_name&gt;</c></p>
+                    <p>Switch to your new branch, edit files, and accumulate new commits, just like before. When your branch is just the way you would like it to look, it is time to go public.  Ready?</p>
+                </li>
 
-git pull upstream master
-# remember that "upstream" is the name your laptop gives to the
-# definitive version.  you just updated your master branch with
-# the latest definitive version
+                <li>
+                    <p>Well, not so fast.  It is conceivable that the <c>master</c> branch has evolved significantly during the time you were editing and committing in the previous step.  So let us bring your contribution up-to-date.</p>
+                    <p><c>git checkout master</c></p>
+                    <p><c>git pull upstream master</c></p>
+                    <p><c>git checkout &lt;branch_name&gt;</c></p>
+                    <p><c>git rebase master</c></p>
+                    <p>The first two commands bring your repository up-to-date with the <c>master</c> branch in the definitive repository.  Then you switch to your branch with your new work, and much as we have done in the previous chapters, you rewind your branch and replay it off the commit at the tip of <c>master</c>.</p>
 
-git branch branch_name
-# make a new branch called "branch_name".  choose a short but
-# descriptive name for the work you will do on that branch
+                    <p>There is the very real possibility of a conflict in this rebase.  But you would much, much rather discover this yourself now, in the privacy of your own laptop, instead of an overlord getting all geared up to evaluate your public pull request and being immediately stymied by discovering there is a merge conflict that will simply be handed right back to you to resolve.  When this happens, the overlord is just going to let you know, and then head off to evaluate somebody else's pull request.</p>
 
-git checkout branch_name
-# recall that "checkout" switches branches.  now we are on the
-# new branch you just created.  it looks just like the master
-# branch, but once you make changes, those are only on this
-# branch: you will not be changing the master.
+                    <p>A conflict will be resolved the same way as .... <xref provisional="small-group-rebase-conflict" />.  If there was no conflict in the rebase, all the better.  Now you have done all you can<ndash />your work is all packaged up nicely and consistent with the absolute latest changes in the definitive repository, so you are ready to go public.</p>
+                </li>
 
-# now do whatever you want to do on that branch.  occasionally
-# you should do
+                <li>
+                    <p><c>git push origin &lt;branch_name&gt;</c></p>
+                    <p></p>
+                    <p> Remember that <c>origin</c> is the name your laptop has for your fork of the project in your GitHub account. Now your fork has a new branch, which you would like to see also incorporated into the the definitive repository.</p>
 
-git commit -a -m "useful message goes here"
+                    <p>Use your browser to go to GitHub, and go to your fork of the project.  GitHub knows that you just put a new branch on that fork, so you should see a prominent green button on the right which says <c>Compare &amp; pull request</c>.</p>
 
-# "commit" means that you really want the changes you have just
-# made.  without the commit, those changes don't really count.
-# commit whenever you are about to take a break, and whenever
-# you have reached a small milestone.  it is good to commit often.
+                    <p>Click that button and you will see a page with a text box where you can describe the changes you have made.  It is considered polite to describe where those changes can be seen (in the final product, not in the source files) so that the reviewer can take a look at the effect of your changes.  For example, say something like <q>New exercises for Chapter 6, see page 88.</q></p>
 
-# now suppose you did all the changes you planned.
+                    <p>Click the green <c>create pull request</c> button and you are done.  Easy, since GitHub knows who the overlords are and has already been in touch with them about your changes.</p>
+                </li>
 
-git push origin branch_name
+                <li>
+                    <p><c>git checkout master</c></p>
+                    <p><c>git pull upstream master</c></p>
+                    <p>You are ready to start on something new while you wait on the overlords, so these two commands will reset the repository on your laptop to be ready to begin on something new, and update your repository with the latest changes from the definitive repository.</p>
+                </li>
+            </ol>
+        </list>
 
-# remember that "origin" is your laptop's name for your fork of the
-# project in your GitHub account.
-# now your fork has a new branch, which you would like to put into
-# the definitive version.
+        <paragraphs>
+            <title>What might happen next?</title>
 
-# use your browser to go to GitHub, and go to your fork of this
-# project.  GitHub knows that you just put a new branch on that
-# fork, so you should see a prominent green button on the right
-# which says "Compare & pull request".
+            <p>Hopefully someone with control over the definitive repository will accept your pull request.  But maybe they want you to make some changes; perhaps they found a typo or other error.  No problem: just checkout your branch again on your laptop, edit to make the corrections, save those changes as a new commit on the branch, and push your branch to your fork (<c>origin</c>).  This is the same recipe as in <xref ref="creating-pull-request" />, except that you skip over the command that actually creates <c>branch_name</c>, since that branch already exists.</p>
 
-# click that button and you will see a page with a text box where
-# you can describe the changes you have made.  it is considered
-# polite to describe where those change can be seen (in the final
-# product, not in the source files) so that the reviewer can
-# take a look at what you did.  for example "new exercises in
-# section 3.2, see page 88".
+            <p>Your pull request will be automatically updated and the overlords notified.  Notice that we are not changing any commits, just adding to, and extending the branch.  And anybody can look and see the record of your original proposal and your response to the overlord's request.  There is a complete record of exactly what decisions were taken and <c>git</c> and GitHub make the mechanics of the collaboration between contributor and overlord very simple.</p>
 
-# then click the green "create pull request" button.
-# you are done.
+            <p>It may happen that you (the person who created the pull request) are also a person who has control over the definitive repository, <ie /> an overlord.  In that case you can actually go to the definitive version on GitHub and accept your own pull request.  However, many projects adopt the policy that people are not supposed to accept their own pull request, so would frown on this.  This sort of policy is a best practice, but is not enforced by <c>git</c> or <c>GitHub</c>, it is a social construct of the organization of your project.</p>
+        </paragraphs>
 
-# you are done with the work you planned for that branch, but
-# probably you want to do something else.  so it is a good
-# idea to do
-
-git checkout master
-
-# so that you are back on your master branch.
-# you might also want to do
-
-git pull upstream master
-
-# so that you will have any new changes since the last time you pulled.
-
-# when in doubt do
-
-git status
-
-# and it will tell you what branch you are on, and if you have any
-# uncommitted changes.
-
---------
-
-What might happen next?
-
-Hopefully someone with control over the definitive version will
-accept your pull request.  But maybe they want you to make some
-changes; perhaps they found a typo or other error.  No problem:
-just checkout that branch again, make the corrections, commit,
-and push the changes to your branch on your fork.  Your pull request
-will be automatically updated.
-
-It may happen that you (the person who made the pull request)
-are also a person who has control over the definitive version.  In that
-case you can actually go the definitive version on GitHub and accept
-your own pull request, However, many projects adopt the policy that
-people are not supposed to accept their own pull request.  You need
-to work that our with your main collaborators.
-
+        <p>Even if you never aspire to be an overlord, you will find reading the next section is helpful, since it is always a good idea to see what it is like when the shoe is on the other foot.  It also explains what you should do as a contributor when the branch in your pull request has a conflict with the <c>master</c> branch due to some changes that were introduced to <c>master</c> between the time you pushed your branch and an overlord got interested in an evaluation.</p>
     </section>
 
     <section>
-        <title>Reviewing and Approving a Pull Request</title>
+        <title>Reviewing and Accepting a Pull Request</title>
+
+        <p>We now change our point-of-view, to assume that you, dear reader, are the owner of the definitive repository, or have control over a definitive repository.  In other words, you are an overlord now, with responsibility for the official version that will be produced from the definitive repository.  Other people want to contribute to your project, so they create pull requests that GitHub notifies you about.  The pull request is GitHub's way of letting other people contribute to your project, while still allowing you to have complete control.</p>
+
+        <p>Here is an annotated description of the process of reviewing and accepting a GitHub pull request.</p>
+
+        <paragraphs>
+            <title>Locate a Pull Request on GitHub</title>
+
+            <p>GitHub has likely sent you a notification immediately after a contributor has created a pull request, and maybe that email has a link to take you directly there.  But you also need to know how to find any given pull request later.</p>
+
+            <p>Go to the project's home on GitHub and see if there are any pending pull requests.  Note that you are going to the definitive repository, not your own personal fork of the project.  You have your manager hat on now, not your contributor hat.</p>
+
+            <p>It is common to see seven tabs across the top of the repository on GitHub:<pre>
+            Code  Issues  Pull requests  Wiki  Pulse  Graphs  Settings
+            </pre>The first three and the last one are used most often.  For <c>Issues</c> and <c>Pull requests</c> there will be a little number telling you how many items need your attention.  Click on <c>Pull requests</c>.  Each pull request will have a title, and it will tell you who made the pull request and when they created it.  Click on one of the pull requests.</p>
+        </paragraphs>
+
+        <paragraphs>
+            <title>Initial Review of a Pull Request</title>
+
+            <p>If the contributor did a good job, there will be a few sentences describing what they did, and an indication of how their proposed changes appear in the final product, such as <q>New exercises for Chapter 6, see page 88.</q>.  Let us assume the contributor gave a clear description, and what they describe sounds like something beneficial to your project.</p>
+
+            <p>Below the description you <em>should</em> see a check mark in a green disk, and the phrase<pre>
+            This branch has no conflicts with the base branch
+            </pre></p>
+
+            <p>What does that mean?  A <term>merge conflict</term> occurs when two people modify the same part of the same file.  This could happen, for example, if a definition had awkward wording, and two people decided to fix it at about the same time.  If they both submit pull requests, and you accept one of the pull requests, then the other pull request will cause a merge conflict because there is no automated way to figure out how to apply the second set changes since the original context has been destroyed by the application of the first pull request.  (In the unlikely case that both people use <em>the exact same wording</em> then there would not be a merge conflict.)  Another common scenario is when two people add new exercises to the end of an existing list.  Once you accept one of these pull requests, there is no automated way to determine where to put the second set of new exercises.  Should the second group of exercises go <em>before</em> the first addition, or <em>after</em> the first addition?  <c>git</c> cannot help you here, and therefore will not help you.</p>
+
+            <p>Another likely explanation is that the pull request has a branch with a long lifetime.  It was created as a branch off the tip of <c>master</c>, but that was a long time ago.  The contributor added commits at a leisurely pace, and the overlords took their time in getting to their pull requests (always a bad practice for an overlord, you want happy contributors!).  During this time, conceivably many new commits have been added to the <c>master</c> branch and somewhere there is an unfortunate overlap with the contributor's edits or their context.</p>
+
+            <p>So a merge conflict requires a human to figure out how to <term>resolve</term> it.  Usually it is simple: just look at both versions and choose one, or the other, or come up with some happy medium.  Simple for a person, but impossible for a machine.</p>
+
+            <p>When GitHub says there is a merge conflict, it is because GitHub has done a trial test of merging your branch in the pull request into the <c>master</c> branch of the definitive repository and the trial ended badly.  The usual thing to do is scroll down to the next item on the page, which is a comment box.  Write a brief message to the contributor saying there is a merge conflict, and click the <c>Comment</c> button and an email will be sent to the contributor.  You should expect the contributor to resolve the conflict (see next paragraph).  Occasionally you may choose to fix a small conflict yourself, but let us not worry about that now.</p>
+
+            <p>The contributor can resolve the conflict by doing<pre>
+            git checkout &lt;branch_name&gt;
+            git pull upstream master
+            </pre>So the contributor is on the branch they offered in the pull request, and it is important to get this part right.  Then the contributor pulls commits from the <c>master</c> branch of the definitive repository.  Several things happen as a result.  First, the contributor gets the very latest commits from the <c>master</c> branch of the definitive repository, so it very up-to-date.  Then <c>git</c> will try to merge <c>master</c> into <c>&lt;branch_name&gt;</c>.  This is going to end the same way as it did in <c>git</c>'s trial: badly.  But we expected it, were prepared for it,  and <c>git</c> will do everything it can to help us.</p>
+
+            <list xml:id="resolving-merge-conflict">
+                <title>Resolving a Merge Conflict</title>
+                <ol>
+
+                    <li>
+                        <p>In the output announcing the merge conflict, <c>git</c> will list exactly which files have merge conflicts.  Open these files in your editor and search for <c>========</c>.  Above and below a this line of equal signs you will see the text that <c>git</c> cannot resolve itself delimited with hints on where it comes from.  Edit freely to make the text look the way you want it, and remove the markers: <c>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</c>, <c>========</c>, <c>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</c>.</p>
+                    </li>
+
+                    <li>
+                        <p><c>git add &lt;file1&gt; &lt;file2&gt; &lt;file3&gt;</c></p>
+                        <p>You need to stage your changes in the index in preparation for a commit, as usual.</p>
+                    </li>
+
+                    <li>
+                        <p><c>git commit -m "Fixing merge conflict due to..."</c></p>
+                        <p>You finish by creating a <term>merge commit</term>.  This contains your edits from the first step and the commit has two parents (rather than the usual one), the tips of the two branches being merged.</p>
+                    </li>
+                </ol>
+            </list>
+
+            <p>The contributor can now push their branch to their fork at <c>origin</c> and GitHub will notify the overlords that the updated branch is ready for review.</p>
+
+            <p>Note: there is no need to click <c>Close pull request</c>.  Only do that when you really intend to reject the request.  And always leave a message so that it is clear you did not close the pull request by accident.</p>
+        </paragraphs>
+
+        <paragraphs>
+            <title>In-depth Review of a Pull Request</title>
+
+            <p>Now you are looking at a pull request with a description that sounds useful, and there are no conflicts.  The next step is to look at the actual changes the contributor made and their effect on your project.  There are three tabs below the title of the pull request:<pre>
+            Conversation    Commits    Files changed
+            </pre>Click on <c>Files changed</c>.  Highlighted in red and green will be the lines which were deleted and added (respectively) as part of this pull request.  You need to look carefully at what was written, because this is destined to become an official part of your project.  All large successful projects have standards for writing the source material, and you should check that the author has done a good job.  Suppose, for example, you see the following line added to your calculus textbook:<pre>
+            When looking for a maximum, be sure to check {\em both} end points.
+            </pre>The author has not used the LaTeX markup language in the best way, so it would be reasonable to click back to the <c>Conversation</c> tab, and in the comments box put something like<pre>
+            Use \emph{...} instead of {\em ...} for emphasis.
+            </pre>It is a good idea to look through all of their changes and submit multiple comments (in the same comment box), otherwise both of you will become annoyed if you have to go back and forth several times.</p>
+
+            <p>Assuming you have looked through their changes and the format and content seems to look okay, now you need to actually check that their contribution performs as claimed.  If the project is code, that means you need to compile and run their code.  If it is a book, you need to produce the book with their changes and see that the output looks good.  Here is the procedure for doing a preliminary review within your fork on your laptop (this is your personal sandbox) and then actually incorporating the changes into the definitive repository.</p>
 
 
-How to manage pull requests
+            <list xml:id="reviewing-pull-request">
+                <title>Reviewing and Accepting a Pull Request</title>
+                <ol>
 
-You are one of the managers of a large project.  Other people
-want to contribute, so they send you pull requests.  The pull
-request is GitHub's way of letting other people contribute to the
-project, while still allowing you to have complete control.
+                    <li>
+                        <p><c>git checkout master</c></p>
+                        <p><c>git pull upstream master</c></p>
+                        <p>You are preparing your fork on your laptop and updating to the most recent version of the definitive repository. You should be in the habit of doing that whenever you are about to start something new, so it shouldn't be a surprise that you are supposed to do that now.</p>
+                        <p></p>
+                    </li>
 
-Go to the project's home on GitHub and see if there are any pending pull
-requests.  Note that you are going to the "definitive" version,
-not your own personal fork of the project.
+                    <li>
+                        <p>Click back to <c>Conversation</c>, and next to the big green <c>Merge pull request</c> click on the blue words <c>command line instructions</c>.  If the GitHub user <c>fredstro</c> made a pull request for your <c>calculus</c> repository as a branch named <c>solutions-chap-6</c>, then these commands would look similar to:</p>
+                        <p><c>git checkout -b fredstro-solutions-chap-6 master</c></p>
+                        <p><c>git pull https://github.com/fredstro/calculus.git solutions-chap-6</c></p>
+                        <p>You want to run these commands for your fork on your laptop<ndash />you could just cut them from your web browser and paste them into your terminal session.</p>
+                        <p>As a result you will now have a branch in your laptop's fork named <c>fredstro-solutions-chap-6</c> with all of the changes <c>fredstro</c> is proposing.  Now you can do a thorough check on the pull request.  Produce your book, or run code, or whatever is appropriate for your project.  Examine the output to see if the changes performed as expected.  Notice that you have not endangered the definitive repository in any way, and eventually you can just delete the branch from your fork.</p>
+                    </li>
 
-It is common to see 7 tabs across the top of the repository on GitHub:
+                    <li>
+                        <p>If the contribution fails to pass your discriminating review, then leave a comment under <c>Conversation</c> and the person will respond with further changes.  That scenario is quite common: people often forget to actually verify that their changes behave as claimed before submitting a pull request.  It can also happen that the overlord evaluating the pull request fails to actually check everything before accepting it.  Then the real blame lies with the overlord who accepted the request, because they are in a position of responsibility for the project. So be very careful if you accept a pull request after only glancing at the <c>Files changed</c> on GitHub.  Once the changes go into the definitive repository, you and your collaborators are responsible for them.</p>
+                    </li>
 
- Code  Issues  Pull requests  Wiki  Pulse  Graphs  Settings
+                    <li>
+                        <p>If everything looks good, then it is easy.  Maybe too easy!  Go back to GitHub and click the big green <c>Merge pull request</c>.  Modify the commit message if necessary, and then click <c>Confirm merge</c>.  GitHub may then say something about deleting a branch which is no longer needed: that is a fine thing to do.</p>
+                    </li>
 
-The first three and the last one are used most often.  For Issues
-and Pull requests there will be a little number telling you how
-many items need your attention.  Click on Pull requests.  Each pull
-request will have a title, and it will tell you who made the
-pull request and when they did it.  Click on one of the pull
-requests.
+                    <li>
+                        <p>Note that your laptop is still on the temporary branch you created to check that pull request.  So you should <c>checkout master</c> and <c>git pull upstream master</c>. The <c>master</c> branch on your fork on your laptop will now have the changes from the pull request you just accepted.</p>
+                        <p>If you handle a lot of pull requests you will acquire a lot of branches which are no longer needed.  We have seen earlier how to delete branches.  The temporary branches you make when you evaluate a pull request have distinctive names, which makes it easy to identify and delete them.</p>
+                    </li>
+                </ol>
+            </list>
 
-If the contributor did a good job, there will be a few sentences
-describing what they did, and an indication of how their proposed
-changes appear in the final product (e.g., "added problems 7.5 to
-7.9 on page 88").  Let's assume they gave a clear description,
-and what they describe sounds like something good.
-
-Below the description you *should* see a check mark in a green
-disk, and the phrase
-
-  This branch has no conflicts with the base branch
-
-What does that mean?  Well, a "conflict" occurs when two people
-modify the same part of the same file.  This could happen, for example,
-if a definition had awkward wording, and two people decided to
-fix it.  If they both submit pull requests, after you accept
-one of the pull requests then the other will have a
-conflict, because there is no automated way to figure out how
-to merge the two sets of changes.  (In the unlikely
-case that both people use *the exact same wording* then there
-would not be a merge conflict.)  Another common scenario is when
-two people add problems to a problem list.  Once you accept one
-pull request, there is no automated way to determine where to
-put the second set of new problems.
-
-A merge conflict requires a human to figure out what to do.  Usually
-it is simple: just look at both versions and choose one, or the other,
-or come up with some happy medium.  Simple for a person,
-but impossible for a machine.
-
-When GitHub says there is a merge conflict, the usual thing to do is
-scroll down to the next item on the page, which is a comment box.  Write
-a brief message saying there is a conflict, and click the Comment
-button.  An email will be sent to the person who submitted the pull
-request.  You should expect them to fix the conflict and re-submit.
-(Occasionally you may choose to fix the conflict yourself, but let's
-not worry about that now.)
-
-The way that person will fix the conflict is: checkout the branch where they
-did the work in the pull request, then do
-
-git pull upstream master
-
-so that they have the recent changes done by other people.  When they
-do that they will get a message telling them about the conflict.
-After fixing the conflict they will add, commit, and then push to
-their fork.  Then *automatically* the pull request will be updated
-and you will be able to proceed to the next step.
-
-Note: there is no need to click "Close pull request".  Only do that
-when you really intend to reject the request.  And always leave a
-message so that it is clear you didn't close it by accident.
-
-Now you are looking at a pull request with a description that sounds
-useful, and there are no conflicts.  The next step is to look at
-the changes they made.  There are three tabs below the title of the
-pull request:
-
-Conversation    Commits    Files changed
-
-Click on "Files changed".  Highlighted in pink and green will be the
-lines which were deleted and added as part of this pull request.  You need to
-look carefully at what was written, because this is going to become an
-official part of your project.  All large successful projects have
-standards for writing the source material, and you should check that
-the author has done a good job.  Suppose, for example, you see the
-following line added:
-
-  When looking for a maximum, be sure to check {\em both} end points.
-
-The author has mis-used a LaTeX macro, so it would be reasonable
-to click back to the Conversation tab, and in the comments box put
-something like
-
-  Use \emph{...} instead of {\em ...} for emphasis.
-
-It is a good idea to look through all of their changes and submit multiple
-comments (in the same comment box), otherwise both of you will become
-annoyed if you have to go back and forth several times.
-
-Assuming you have looked through their changes and the format and content
-seems to be okay, now you need to actually check that their contribution
-performs as claimed.  If the project is code, that means you need to
-run their code.  If it is a book, you need to compile the book with
-their changes and see that the output looks good.
-
-Click back to Conversation, and next to the big green "Merge pull request"
-click on the blue words "command line instructions".  You will use the
-two commands which appear in Step 1.  But before you do that:
-
-Go to the version on your laptop, and do
-
-git checkout master
-git pull upstream master
-
-You should be in the habit of doing that whenever you are about to start
-something new, so it shouldn't be a surprise that you are supposed to do
-that now.
-
-Then do the two commands in Step 1 on GitHub, which will look something
-like this:
-
-git checkout -b fredstro-maass_pictures master
-git pull https://github.com/fredstro/lmfdb.git maass_pictures
-
-# a person with username "fredstro" made the pull request from
-# their branch called "maass_pictures".  the above two commands
-# created a new branch on the laptop called "fredstro-maass_pictures"
-# and then checked out (i.e., switched into) that branch, and then
-# pulled fredstro's pull request into that new branch.
-
-Now you can do a thorough check on the pull request.  Compile latex,
-or run code, or whatever is appropriate for your project.  Examine
-the output to see if it performed as expected.
-
-If it fails, perhaps there was a LaTeX error, then leave a comment under
-Conversation and the person will fix it.  That scenario is quite common:
-people often forget to actually run latex or check their code before
-submitting a pull request.  (It can also happen that the person handling
-the pull request fails to actually check everything before accepting
-the pull request.  The real blame lies with the person who accepted the
-request, because they are in a position of responsibility for the project.
-So be very careful if you accept a pull request after only glancing at
-the Files changed on GitHub.)
-
-If everything looks good, then go back to GitHub and click the big green
-"Merge pull request".  Modify the message if necessary, and then click
-"Confirm merge".  It may then say something about deleting a branch
-which is no longer needed: that is a fine thing to do.
-
-That is it!  More than 90 percent of pull requests can be handled
-with those simple steps.  If you encounter a complicated situation,
-seek help from an expert.
-
-Note that your laptop is still on the temporary branch you created to
-check that pull request.  So you should checkout master and
-git pull upstream master.
-The master branch on your laptop will now have the changes from the
-pull request you just accepted.
-
-If you handle a lot of pull requests you will acquire a lot of branches
-which are no longer needed.  Do
-git branch
-to list all the branches, and 
-git branch -d branchname
-to delete a branch.  The temporary branches you make when you evaluate
-a pull request have distinctive names, which makes it easy to identify
-and delete them.
-
-
+            <p>That is it!  More than ninety percent of pull requests can be handled with those simple steps.  If you encounter a complicated situation, seek help from an expert.</p>
+        </paragraphs>
     </section>
 
+    <conclusion>
+        <p>Large projects use a model similar to this one.  Sage, an open source computer algebra system, has hundreds of contributors with a single <term>release manager</term> as the overlord.  Reviews of proposed branches are distributed among the contributors themselves, so if the release manager is familiar with the reputations and expertise of members of the community, it can be feasible for a single person to roll up fifty or so contributions on a weekly basis and still maintain the integrity of the project, and their sanity.</p>
 
+        <p>Notice that with a large project, there are many people working asynchronously and the potential for conflicts is very real as the mainline branch may advance rapidly from where a contributor initiated it.  In the Sage project, reviews are not assigned, and are voluntary.  A diligent contributor might regularly merge the <c>master</c> branch into their proposed branch, creating merge commits every time, with or without any necessary edits, which are then pushed to the public equivalent of GitHub.  In this way, the contributor's proposed branch is always consistent with a relatively recent version of the definitive repository. Due to this, and to the public nature of the commits on a pull request, there will be many merge commits in such a repository.  The network of commits begins to look less like a tree, and more resembles a slow, broad, meandering river with many branches forming, coming back together, splitting again, reforming,<ellipsis />  Mathematicians refer to this network as a directed acyclic graph, which you may see described as <q>the DAG</q>.  There is always an unambiguous path through the commits back to the original root commit.</p>
 
-
-
-
+        <p>If you have ever tried to collaborate on a writing project using email with attachments of traditional word-processing files (with or without <q>track changes</q>), then you may already be starting to appreciate how <c>git</c>'s branches and remotes, along with GitHub's pull requests and notifications, can free contributors and overlords to collaborate efficiently and concentrate on content with very little procedural friction.</p>
+    </conclusion>
 </chapter>
