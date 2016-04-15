@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- This file is part of the book                -->
-<!--                                              -->
-<!--       Git for Authors                        -->
-<!--                                              -->
-<!-- Copyright (C) 2016  Robert A. Beezer         -->
-<!-- See the file COPYING for copying conditions. -->
+<!-- This file is part of the book                      -->
+<!--                                                    -->
+<!--         Git for Authors                            -->
+<!--                                                    -->
+<!-- Copyright (C) 2016  Robert A. Beezer, David Farmer -->
+<!-- See the file COPYING for copying conditions.       -->
 
 <chapter xml:id="oops">
     <title>Git Miscellany</title>
