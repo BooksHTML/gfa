@@ -62,6 +62,12 @@
 
         <p>The <c>-m</c> switch allows you to make a <term>commit message</term> on the command line, which you should enclose in quotation marks (single or double, allowing use of the other kind in your message, if needed).  Without it, <c>git</c> will dump you in your editor, a step I prefer to avoid.  Either way, you will always want to include a commit message.  They can have multiple lines, but in practice I like to keep them to one concise line, leading with a capitalized action verb, and not more than about sixty characters.  These messages will help you find your way in your <c>git</c> repository, and they will be the first thing others see if they peruse your repository.  I think they are worth some thought toward making them informative and helpful, rather than sloppy and uninformative.  You are an author, no?  Treat your commit messages much like the entries that form a Table of Contents.</p>
 
+        <figure xml:id="figure-xkcd-git-commit">
+            <caption>xkcd <url href="http://xkcd.com/1296/"><q>Git Commit</q></url> (used with permission)</caption>
+            <image source="images/git_commit.png" width="75%" />
+        </figure>
+
+
         <p>Unlike <c>git add</c>, the <c>git commit</c> command does acknowledge that something happened.  The message shown above has the name of the branch (<c>master</c>) and the commit message.  But what is <c>c0f19a2</c>?  Every commit you ever create gets a hexadecimal identifier that is probabilistically unique across all the <c>git</c> repositories ever made and that will ever be made.  And the first seven characters are usually good enough to uniquely identify commits within your repository.</p>
 
         <p>Try the new command <c>git log</c>.  It may not show much, but it will list information on every commit on your current branch.  And you will see some huge commit hashes.  There are <m>268\,435\,456</m> different possibilities for seven hexadecimal digits.  A full 40-digit commit hash has about <m>10^{48}</m> possibilities.  This is not a technical aside, we will see soon enough the critical role commit hashes play in a <c>git</c> repository (see <xref ref="commit-hashes" />).  Even though your commit about the train station incident might often be shown shorthand as <c>c0f19a2</c>, it may in reality be<pre>

@@ -234,6 +234,11 @@
 
         <p>Notice that with a large project, there are many people working asynchronously and the potential for conflicts is very real as the mainline branch may advance rapidly from where a contributor initiated it.  In the Sage project, reviews are not assigned, and are voluntary.  A diligent contributor might regularly merge the <c>master</c> branch into their proposed branch, creating merge commits every time, with or without any necessary edits, which are then pushed to the public equivalent of GitHub.  In this way, the contributor's proposed branch is always consistent with a relatively recent version of the definitive repository. Due to this, and to the public nature of the commits on a pull request, there will be many merge commits in such a repository.  The network of commits begins to look less like a tree, and more resembles a slow, broad, meandering river with many branches forming, coming back together, splitting again, reforming,<ellipsis />  Mathematicians refer to this network as a directed acyclic graph, which you may see described as <q>the DAG</q>.  There is always an unambiguous path through the commits back to the original root commit.</p>
 
+        <figure xml:id="figure-xkcd-git">
+            <caption>xkcd <url href="http://xkcd.com/1597/"><q>Git</q></url> (used with permission)</caption>
+            <image source="images/git.png" width="50%" />
+        </figure>
+
         <p>If you have ever tried to collaborate on a writing project using email with attachments of traditional word-processing files (with or without <q>track changes</q>), then you may already be starting to appreciate how <c>git</c>'s branches and remotes, along with GitHub's pull requests and notifications, can free contributors and overlords to collaborate efficiently and concentrate on content with very little procedural friction.</p>
     </conclusion>
 </chapter>
