@@ -17,6 +17,7 @@
         <xi:include href="solo.xml" />
         <xi:include href="friends.xml" />
         <xi:include href="control.xml" />
+        <xi:include href="merge-conflict.xml" />
         <xi:include href="branch-management.xml" />
         <xi:include href="miscellany.xml" />
         <xi:include href="oops.xml" />

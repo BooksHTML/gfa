@@ -10,5 +10,26 @@
 <chapter xml:id="merge-conflict">
     <title>(*) Merge Conflicts</title>
 
+    <p>How-to for resolving a merge conflict</p>
+
+    <list xml:id="resolving-merge-conflict">
+        <title>Resolving a Merge Conflict</title>
+        <ol>
+
+            <li>
+                <p>In the output announcing the merge conflict, <c>git</c> will list exactly which files have merge conflicts.  Open these files in your editor and search for <c>========</c>.  Above and below a this line of equal signs you will see the text that <c>git</c> cannot resolve itself delimited with hints on where it comes from.  Edit freely to make the text look the way you want it, and remove the markers: <c>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</c>, <c>========</c>, <c>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</c>.</p>
+            </li>
+
+            <li>
+                <p><c>git add &lt;file1&gt; &lt;file2&gt; &lt;file3&gt;</c></p>
+                <p>You need to stage your changes in the index in preparation for a commit, as usual.</p>
+            </li>
+
+            <li>
+                <p><c>git commit -m "Fixing merge conflict due to..."</c></p>
+                <p>You finish by creating a <term>merge commit</term>.  This contains your edits from the first step and the commit has two parents (rather than the usual one), the tips of the two branches being merged.</p>
+            </li>
+        </ol>
+    </list>
 
 </chapter>
