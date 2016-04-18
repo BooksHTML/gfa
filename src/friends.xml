@@ -399,7 +399,7 @@
     <conclusion>
         <p>Notice that Alice and Bob only had to communicate about whose account to use for hosting the paper and on decisions about content.  Never did one have to wait on the other, nor did they pass around files with version numbers.  And since Alice pushed her recommendations to the definitive repository first, it became Bob's responsibility to edit a conflict locally before he could push his idea of how the recommendations should go.</p>
 
-        <p>To summarize, the drill is always the same.  Edit locally on a branch, update your master by pulling from master at the definitive repository, rebase your branch on master, while resolving any conflicts, merge your branch into master (fast-forward), push master to the definitive repository.  We call this the <xref provisional="six-step recipe" /> and you can find a general version in our quick-reference appendix, <xref ref="quick-reference" />.</p>
+        <p>To summarize, the drill is always the same.  Edit locally on a branch, update your master by pulling from master at the definitive repository, rebase your branch on master, while resolving any conflicts, merge your branch into master (fast-forward), push master to the definitive repository.  We call this the <xref ref="eight-step">Eight-Step</xref> and you can find a general version in our quick-reference appendix, <xref ref="quick-reference" />.</p>
 
         <p>There is just one more general <c>git</c> concept left, the pull request, so continue on to <xref ref="control" /> to see how to open up your collaborations to the long tail of contributors from the entire world.</p>
     </conclusion>

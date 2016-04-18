@@ -12,4 +12,58 @@
 
     <p>Cheat sheets for common tasks</p>
 
+
+    <list xml:id="eight-step">
+        <title>The Eight-Step: Adding Commits to the Definitive Repository</title>
+
+        <introduction>
+            <p>We will describe the process of moving commits on a <q>topic</q> branch in a local repository to the master branch of a definitive repository where you have permission to push, and the repository is configured as a remote in your local repository.  Eventually, the logic of this procedure will become second nature.</p>
+        </introduction>
+
+        <ol>
+            <li>
+                <p><c>git checkout master</c></p>
+                <p>Prepare to bring the local master branch up-to-date.</p>
+            </li>
+
+            <li>
+                <p><c>git pull</c></p>
+                <p>Pull new commits from the definitive repository into the local master branch.</p>
+            </li>
+
+            <li>
+                <p><c>git checkout topic</c></p>
+                <p>Move back to the topic branch (which will have a different name).</p>
+            </li>
+
+            <li>
+                <p><c>git rebase master</c></p>
+                <p>Move the branch point of the topic branch to the tip of updated master.  Resolve any conflicts which occur during the replay phase of the rebase.</p>
+            </li>
+
+            <li>
+                <p><c>git checkout master</c></p>
+                <p>Move back to the local master branch in preparation for modifying it.</p>
+            </li>
+
+            <li>
+                <p><c>git branch -d topic</c></p>
+                <p>The topic branch pointer is obsolete as it duplicates the master branch pointer.</p>
+            </li>
+
+            <li>
+                <p><c>git merge topic</c></p>
+                <p>Use a fast-forward merge to bring the topic branch into the master branch.</p>
+            </li>
+
+            <li>
+                <p><c>git push</c></p>
+                <p>Move new commits on the local master branch to the master branch of the definitive repository.</p>
+            </li>
+        </ol>
+    </list>
+
+
+
+
 </appendix>
