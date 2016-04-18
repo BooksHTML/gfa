@@ -7,27 +7,86 @@
 <!-- Copyright (C) 2016  Robert A. Beezer, David Farmer -->
 <!-- See the file COPYING for copying conditions.       -->
 
-<chapter xml:id="oops">
+<chapter xml:id="miscellany">
     <title>Git Miscellany</title>
 
     <introduction>
-        <p>This final chapter is a loose collection of tidbits that you may find useful, without getting too technical or arcane.  We have not tried to cover everything, and we may have told you a few white lies along the way.  So when you exhaust what we have here, re-read the conclusion at the end of this chapter.</p>
+        <p>This final chapter is a loose collection of tidbits that you may find useful, without getting too technical or arcane.  We have not tried to cover everything, and we may have told you a few white lies along the way.  When you exhaust what we have here, re-read <xref ref="parting-shot" />, and send us a pull request if you have something useful (and not too arcane) for this chapter.</p>
     </introduction>
 
     <section>
-        <title>X</title>
+        <title>Impersonating a Commiter</title>
 
-        <p>Odds and sods</p>
+        <p></p>
     </section>
 
     <section>
-        <title>Conclusion</title>
+        <title>The Stash</title>
 
-        <p>There are often many ways to accomplish the same thing in <c>git</c>, and some will be easier than others.  You can find lots of advice on the Internet, some of it is even good.  Sites where answers get upvoted or downvoted are often useful.  As you gain a good understanding of the basic principles of how <c>git</c> works and the job it has been designed for, you will get better at locating and evaluating suggestions.  We have tried to give you a headstart on that basic understanding.  Take notes when you find good stuff that works for you.  (Much of the later bits and pieces here are inspired by our own notes accumulated through our first three years of gaining valuable experince with <c>git</c>.)</p>
+        <p>save, pop, apply -- </p>
 
-        <p>Beware of dogma.  Some will say you should <em>never</em> rewrite history<ndash />we do it <em>all</em> the time.  Others will say you should always do fast-forward merges and obtain a perfectly linear history<ndash />impossible on a big public project.  Use your independent judgement, and always remember <xref ref="principle-git-tool" />.</p>
+        <p>git stash list (note branches)
+    git stash pop (likely)
+    git stash drop (remove, default is top)
+    git stash apply (leaves on stack!)
+    git stash show -p (diff of a stash, default is top)</p>
 
-        <p>But most of all, have fun and don't panic!</p>
     </section>
+
+    <section xml:id="tag-sign">
+        <title>Tagging Releases, Signing a Repository</title>
+
+        <p></p>
+    </section>
+
+    <section>
+        <title>Who Did What, and When?</title>
+
+        <p>blame, log with diff-filter, "When a file was added to the repo", </p>
+    </section>
+
+    <section>
+        <title>Where Did it All Go Wrong?</title>
+
+        <p>git bisect</p>
+    </section>
+
+    <section>
+        <title>File Management</title>
+
+        <p>rm, mv</p>
+    </section>
+
+    <section>
+        <title>Binary Files</title>
+
+        <p></p>
+    </section>
+
+    <section>
+        <title>Everything: The reflog</title>
+
+        <p></p>
+    </section>
+
+    <section xml:id="readme">
+        <title>README on GitHub</title>
+
+        <p></p>
+    </section>
+
+    <section>
+        <title>Log Display Options</title>
+
+        <p><c>--pretty=oneline</c>, <c>--graph</c></p>
+    </section>
+
+<!--
+    <section>
+        <title></title>
+
+        <p></p>
+    </section>
+-->
 
 </chapter>
