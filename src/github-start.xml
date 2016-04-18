@@ -8,8 +8,70 @@
 <!-- See the file COPYING for copying conditions.       -->
 
 <appendix xml:id="github-start">
-    <title>(*) Getting Started with GitHub</title>
+    <title>Getting Started with GitHub</title>
 
-    <p>uname, repo name, README, collaborators</p>
+    <introduction>
+        <p><url href="https://github.com/">GitHub</url> is a site that lets users host, and communicate with, their <c>git</c> repositories and the repositories of others.  There are similar services, but GitHub appears to be the most popular, and so benefits from the network effects of a large number of users.  You can make an unlimited number of public repositories, but must pay for private repositories.  Here <q>public</q> means anybody can see the content of your repository and copy it, but you retain control over who can modify the repository.</p>
+
+        <p>The information in this appendix is accurate as of 2016-04-10.  Corrections and updates are greatly appreciated.  How about as a pull request?</p>
+    </introduction>
+
+    <!-- https://help.github.com/articles/signing-up-for-a-new-github-account/ -->
+    <section>
+        <title>Make An Account</title>
+
+        <p>This is routine, but we have one piece of advice.  Choose your username with some thought.  It will be part of the URL for your repositories and others will use it to identify you in discussions.  It will also be part of a GitHub email address you may choose to use.  And so on.  If you are doing professional work, it might be best to use some variant of your real name, and if the base name of your canonical email is available, that might be the best.  You will have a GitHub profile that you can use to disambiguate yourself.</p>
+
+        <p>Pick a strong password, since you would rather not have untrusted individuals changing your repositories, or worse, impersonating you on GitHub and destroying your hard-earned reputation.</p>
+    </section>
+
+    <!-- https://help.github.com/articles/creating-a-new-repository/ -->
+    <section xml:id="new-github-repo">
+        <title>Creating a New Repository on GitHub</title>
+
+        <p>Find a plus-sign button in the upper-right hand corner of a GitHub page, or maybe as a new user you see a big button for creating a new repository.  This will take you to a set-up screen.  You will give your repository a name.  For books, we like initialisms (lower-case), so the book you are reading has the repository name <c>gfa</c>.  Alice uses <c>banking-paper</c> in our first exercise.  Like your username and commit messages, give this name some thought.</p>
+
+        <p>Fill in a human-readable description if you wish, and go ahead and tick the box for a README, which we will discuss elsewhere (<xref ref="readme" />).  No need to mess with <c>.gitignore</c> now, and adding a license is your choice.  You'll be taken to the main screen for your new repository and you will see much of the information you just provided.</p>
+    </section>
+
+    <section xml:id="github-collaborators">
+        <title>Adding Collaborators to a GitHub Repository</title>
+
+        <p>In the seven tabs near the top, locate <c>Settings</c>, with the gear icon.  This will take you to a page with five choices in the left sidebar.  Go to <c>Collaborators</c>.  Here you can search for and add a collaborator, who will then be able to add commits to your repository. So make sure you understand the trust you have placed in this person before you pull the trigger.</p>
+    </section>
+
+    https://github.com/rbeezer/banking-paper.git
+
+    <section xml:id="github-clone">
+        <title>Copying a GitHub Repository (Forks, Clones)</title>
+
+        <p>For collaborators to work independently on a project, they need their own independent copy of a repository.  On GitHub you can visit somebody else's repository and <c>fork</c> that repository.  This will make an entire independent copy of that person's repository in your account (where you have permission to modify your copy), and GitHub will remember where your copy came from.  In this case the copy is known as a <c>fork</c>.  Yes, the word <c>fork</c> has just been used as a verb, <q>Cameron forked Drew's repo</q>, and is also used as a noun, <q>Cameron's fork of Drew's repo.</q>  Making a fork of someone's project is a compliment, since it suggests interest, and the possibility of someday contributing back to the project, in the style of <xref ref="control" />.</p>
+
+        <p>You can also, and often may prefer, to copy a repository to your local computer.  You might like to write while on airplanes, on your desktop at work, or on your laptop at home in bed.  Then you can even collaborate with yourself and keep all those repositories syncronized.  So you could have copies of your project all over the place.</p>
+
+        <!-- https://github.com/rbeezer/banking-paper.git -->
+        <p>It is easy to copy a <c>git</c> repository generally, and dead-simple to copy a GitHub-hosted repository.  To copy a GitHub repository, you need to know the URL.  It is a bit hidden.  On the main page for a project (yours, or somebody else's), you will find a box about a third of the way down, to the right, but just inside of  <c>Download ZIP</c>.  It is prefixed by <c>HTTPS</c>, but the distinguishing contents may be obscured.  You are looking for something like<pre>
+        https://github.com/alice-jones/banking-paper.git
+        </pre>which would fit our first GitHub example.  When you find it, highlight it and copy it to your clipboard.</p>
+
+        <p>Now open a terminal on your local machine where you can use the command-line.  Navigate to a directory, where a new repository-specific directory makes sense for your work.  In our first example, Alice might navigate to her existing <c>~/papers/</c> directory, where she expects to soon have a <c>~/papers/banking-paper</c> directory.  OK, all set.  Making a copy is known as a <term>clone</term>.  (And a fork is just a special type of clone.)</p>
+
+        <console>
+            <prompt>alice@work:~/papers$ </prompt>
+            <input>git clone https://github.com/alice-jones/banking-paper.git</input>
+            <output>
+            Cloning into 'banking-paper'...
+            remote: Counting objects: 3, done.
+            remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+            Unpacking objects: 100% (3/3), done.
+            Checking connectivity... done.
+            </output>
+        </console>
+
+        <p>The above may take a long time for a large repository (many large files, or a long history of many, many changes).  The output above is for an essentially empty repository.  Now verify the expected directory exists and has the expected files in it.</p>
+    </section>
+
+
+
 
 </appendix>

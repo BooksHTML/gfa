@@ -8,16 +8,16 @@
 <!-- See the file COPYING for copying conditions.       -->
 
 <appendix xml:id="git-start">
-    <title>Getting Started with <c>git</c></title>
+    <title>Getting Started with Git</title>
 
     <p>We generally prefer to use a large collection of very sharp tools to get our work done, and it is no different with <c>git</c>.  There are pretty point-and-click programs that are suppose to make it easier to use and understand <c>git</c>, and even GitHub will offer to do certain tasks for you.  In our limited experience, we just find these interfaces at best confusing, and downright impossible when things go south.  Thus our decision to teach you how to interact with <c>git</c> at the command-line.</p>
 
-    <p>As it is, command-line <c>git</c> is already an interface to even more primitive commands.  What you and I are using in these exercises are known as the <term>porcelain</term> commands, while the primitive versions are the <term>plumbing</term> commands.  You can work out the metaphor.  You can find tutorials that walk you through a sequence of plumbing commands to effect one of our porcelain commands like a commit or merge, and you can learn a lot from the exercise.  (see <xref ref="git-book" detail="Chapter 10" />.)  Don't panic if you see some terms below you are not yet familiar with, they will be explained eventually.</p>
+    <p>As it is, command-line <c>git</c> is already an interface to even more primitive commands.  What you and I are using in these exercises are known as the <term>porcelain</term> commands, while the primitive versions are the <term>plumbing</term> commands.  You can work out the metaphor.  You can find tutorials that walk you through a sequence of plumbing commands to effect one of our porcelain commands like a commit or merge, and you can learn a lot from the exercise.  (see <xref ref="git-book" detail="Chapter 10" />.)  Don't panic if you see some terms below that you are not yet familiar with, they will be explained eventually.</p>
 
-    <p>The information in this appendix is accurate as of 2016-04-10.</p>
+    <p>The information in this appendix is accurate as of 2016-04-10.  Corrections and updates are greatly appreciated.  How about as a pull request?</p>
 
-    <subsection>
-        <title>Installing Command-Line <c>git</c></title>
+    <section>
+        <title>Installing Command-Line Git</title>
 
         <p>We are not going to be much help here, as we are not going to try to cover all the bases.  Use your operating system's package manager or other tools to install command-line <c>git</c>.  A good place to start is the <url ref="https://git-scm.com/downloads">download area</url> of the canonical <c>git</c> site <xref ref="git-site" />, or see the <booktitle>Pro Git</booktitle> book <xref ref="git-book" detail="Section 1.5" />.</p>
 
@@ -30,10 +30,10 @@
             </output>
         </console>
         <p>Your version number will likely be different.</p>
-    </subsection>
+    </section>
 
-    <subsection>
-        <title>Configuring <c>git</c> the First Time</title>
+    <section>
+        <title>Configuring Git the First Time</title>
 
         <p>This subsection has some one-time details you need to work through before using <c>git</c>.</p>
 
@@ -59,10 +59,10 @@
         <p>There are other settings, and you can check yours with <c>git config --list</c>.  One last thing.  If your version of <c>git</c> happens to be prior to version 2.0, then check your configurations for the value of <c>push.default</c> and ensure that it is <c>simple</c>.  It will be important later.</p>
 
         <p>More details, and especially for Windows systems, can be found in the <booktitle>Pro Git</booktitle> book <xref ref="git-book" detail="Section 1.6" /></p>
-    </subsection>
+    </section>
 
-    <subsection>
-        <title>Initializing a git Repository</title>
+    <section>
+        <title>Initializing a Git Repository</title>
 
         <p>To begin a new repository, create a directory where you want your files to live.  We have been using <c>~/books/ppw</c> in our examples.  Then make that the default directory in a command-line session.</p>
         <console>
@@ -79,11 +79,11 @@
             <output>No revs to be shown.</output>
         </console>
         <p>But once you do make a commit, there will be a <c>master</c> branch and the root commit will get special identification as such.  That's it, you are ready to go.</p>
-    </subsection>
+    </section>
 
-    <subsection>
+    <section>
         <title>Ignore Temporary Files</title>
 
         <p>You can save this subsection for later.  When you run <c>git status</c> you will eventually become annoyed by intermediate or temporary files in your working directory that keep being reported as untracked, and worse case, they will obscure files you really need to know about.  There is a <c>.gitignore</c> file (globally, or per-repository) where you can list filename patterns for <c>git</c> to ignore.  You can find lots of examples on the Internet (in addition to lots of custom configurations).  I prefer not to use too much extra configuration, so that if I end up on an unfamiliar computer, commands continue to work as I expect.</p>
-    </subsection>
+    </section>
 </appendix>
