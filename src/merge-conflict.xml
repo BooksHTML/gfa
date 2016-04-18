@@ -8,16 +8,42 @@
 <!-- See the file COPYING for copying conditions.       -->
 
 <chapter xml:id="merge-conflict">
-    <title>(*) Merge Conflicts</title>
+    <title>Merge Conflicts</title>
 
     <p>How-to for resolving a merge conflict</p>
+
+    <p>git mergetool, meld</p>
+
+    <p>We present similar three-step recipes for a resolving conflicts that occur either during a rebase, or during a (non-fast-forward) merge.</p>
+
+    <list xml:id="resolving-rebase-conflict">
+        <title>Resolving a Rebase Conflict</title>
+        <ol>
+
+            <li>
+                <p>In the output announcing the conflict, <c>git</c> will list exactly which files have merge conflicts.  Open these files in your editor and search for <c>========</c>.  Above and below a this line of equal signs you will see the text that <c>git</c> cannot resolve itself delimited with hints on where it comes from.  Edit freely to make the text look the way you want it, and remove the markers: <c>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</c>, <c>========</c>, <c>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</c>.</p>
+            </li>
+
+            <li>
+                <p><c>git add &lt;file1&gt; &lt;file2&gt; &lt;file3&gt;</c></p>
+                <p>You need to stage your changes in the index in preparation for a commit, as usual.  At this point, <c>git status</c> will include<pre>
+                (all conflicts fixed: run "git rebase --continue")
+                </pre>so go ahead.  Notice that you are not given an opportunity to change the commit message, and maybe your edits make this desirable.  This can be done later, see interactive rebasing in <xref ref="branch-management" />.</p>
+            </li>
+
+            <li>
+                <p><c>git rebase --continue</c></p>
+                <p>You have modified the commit that did not rewind smoothly, and so this command tells <c>git</c> to continue replaying commits from the branch, including the one it is in the midst of replaying.  The remaining commits may apply smoothly, or they may present new conflicts.  So you may go through this recipe several times.</p>
+            </li>
+        </ol>
+    </list>
 
     <list xml:id="resolving-merge-conflict">
         <title>Resolving a Merge Conflict</title>
         <ol>
 
             <li>
-                <p>In the output announcing the merge conflict, <c>git</c> will list exactly which files have merge conflicts.  Open these files in your editor and search for <c>========</c>.  Above and below a this line of equal signs you will see the text that <c>git</c> cannot resolve itself delimited with hints on where it comes from.  Edit freely to make the text look the way you want it, and remove the markers: <c>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</c>, <c>========</c>, <c>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</c>.</p>
+                <p>In the output announcing a merge conflict, <c>git</c> will list exactly which files have merge conflicts.  Open these files in your editor and search for <c>========</c>.  Above and below a this line of equal signs you will see the text that <c>git</c> cannot resolve itself delimited with hints on where it comes from.  Edit freely to make the text look the way you want it, and remove the markers: <c>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</c>, <c>========</c>, <c>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</c>.</p>
             </li>
 
             <li>
@@ -26,8 +52,8 @@
             </li>
 
             <li>
-                <p><c>git commit -m "Fixing merge conflict due to..."</c></p>
-                <p>You finish by creating a <term>merge commit</term>.  This contains your edits from the first step and the commit has two parents (rather than the usual one), the tips of the two branches being merged.</p>
+                <p><c>git commit -m "Fixing merge conflict by..."</c></p>
+                <p>You now create one new commit, a <term>merge commit</term>.  Remember, in a merge no commits change in any way.  But here you do create an additional new commit that is slightly different in nature.  It holds the changes you made to resolve the conflicts, but unlike other commits, it has two parents, not one.  These are the tips of the two branches that are being merged.  This what makes a regular merge different from a fast-forward merge.  In <c>show-branch</c> it will be shown distinctively as a dash, not an asterisk or exclamation point.</p>
             </li>
         </ol>
     </list>
