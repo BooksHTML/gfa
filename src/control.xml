@@ -11,6 +11,8 @@
     <title>In Control</title>
 
     <introduction>
+        <p>NEEDS CLARIFICATION AS ORIGIN CHANGES HERE</p>
+
         <p>We now turn to the situation where your book may have numerous collaborators. Maybe your book is an anthology of short stories with thirty contributors, or maybe it is a human anatomy textbook with the potential for students to discover small errors for many, many years down the road.  If the anatomy textbook has four authors, you might begin as colleagues as in <xref ref="friends" />, but later may have specialists reviewing and editing select chapters, until finally the book is published and students suggest changes and corrections for the inevitable Second Edition. <c>git</c> is flexible enough to help you at every step.</p>
 
         <p>So the model here is a select few that are in control of the repository.  They might be called authors or editors, but we will refer to them generically as <term>overlords</term> (WordNet: <q>a person who has general authority over others</q>).  In our opinion many projects should be large, because you want to encourage people to contribute.</p>

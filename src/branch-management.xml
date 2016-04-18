@@ -10,9 +10,11 @@
 <chapter xml:id="branch-management">
     <title>(*) Branch Management</title>
 
-    <p>Reference principle, always working on a branch</p>
+    <p>Reference a principle, always working on a branch</p>
 
     <p>interactive rebase, total squash and rebuild commits, grafting</p>
+
+    <p>relative references, merge commits, etc, seen already in solo chapter</p>
 
     <p>stash, "I'll just be a minute"</p>
 
@@ -20,6 +22,10 @@
 
     <p>cherry-pick</p>
 
+    <p>Rename a branch</p>
+
     <p>don't rebase through branch points, might lose one</p>
+
+    <p>Fancier diff commands to see whole cumulative branch</p>
 
 </chapter>
