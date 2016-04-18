@@ -8,11 +8,400 @@
 <!-- See the file COPYING for copying conditions.       -->
 
 <chapter xml:id="friends">
-    <title>(*) With a Few Friends</title>
+    <title>With a Few Friends</title>
 
-    <p>Working with a small group of equals, all with push permission to a central repository (on GitHub).  Resolving merge conflicts locally.  Example with two repositories and GitHub.</p>
+    <introduction>
+        <p>One of the real benefits of <c>git</c> is the ability to collaborate easily with others in a de-centralized manner across time and space.  In this chapter we will experiment with a model that is appropriate for a small group of collegial collaborators.  My dictionary (WordNet) defines <q>collegial</q> as <q>characterized by or having authority vested equally among colleagues,</q> which is precisely the situation we will simulate.  So, in this chapter we will explore the scenario where a small group of equals works on a writing project, on the assumption that everyone in the group is trusted to make any sort of change at any time.</p>
 
-    <p>Push strategy. Be sure to see the configurration note on </p>
+        <p>We will <em>not</em> be using email attachments or Google Docs to communicate.  Rather, an easy way to collaborate with <c>git</c> is to place a copy of the repository on a server where each collaborator has the right privileges to interact with the repository.  If your project is secret and sensitive, this might be a server at your workplace, or a web host you control and trust.  Or maybe the project is not so sensitive and a private account at GitHub is appropriate and easy to set-up.  Or maybe your project has an open license and an open repository will eventually allow total strangers to contribute to your project (see <xref ref="control" />).  For exercises in this chapter, we will use  <url href="https://github.com/">GitHub</url>, a (free) site that hosts <c>git</c> repositories along with tools supporting collaboration around a <c>git</c> repository.</p>
 
+
+        <!-- a merge is not a symmetric operation, creats a merge object with two parents -->
+        <principle xml:id="principle-merge-strategy">
+            <title>Merge into Your Current Branch</title>
+
+            <statement>
+                <p>A merge integrates changes into your current branch, from a branch you specify.</p>
+            </statement>
+        </principle>
+
+
+    </introduction>
+
+    <section>
+        <title>Collaborating across Time and Space</title>
+
+        <p>To get started, visit <xref ref="github-start" />, read the advice on making a GitHub account, and make an account.  Then come back here to work the following example.  To keep things simple, we will walk through an exercise with just two co-authors, but you might imagine up to about five individuals participating in the following.</p>
+
+        <exercise>
+            <title>Alice and Bob Write Crypto</title>
+
+            <statement>
+                <p>Alice and Bob are two professional cryptographers who have discovered a weakness in a critical algorithm underlying much of the world's electronic banking programs.  They need to get the details out quickly as a research paper that they will host on the <url href="https://arxiv.org/">arXiv</url> for the security community to vet.  Alice and Bob have known each other for years. They trust each others technical skills and writing style, and even better, they both have GitHub accounts.  In the best traditions of cryptography research, they decide to write their paper openly as a public GitHub repository, and they decide to host the repository in Alice's account.  Everything else will be discussed on GitHub.</p>
+
+                <p>Work this exercise playing the role of Alice.  If you have a friend who can be Bob, all the better, but you can also play both sides of the collaboration yourself and get almost as much out of the exercise (if Bob is somebody else, then he need a GitHub account, but if you are playing both sides, then your one GitHub account is enough.).  Alice (you!) will log into her GitHub account and initiate a new repository.  Recall that in <xref ref="solo" /> we created a new repository on our local computer at the command-line with <c>git init</c>.  Now Alice will let GitHub do that step since GitHub will automatically configure the repository for subsequent communication.</p>
+
+                <p>See <xref ref="new-github-repo" /> and <xref ref="github-collaborators" /> for instructions on the steps in this paragraph.  Alice will create a new repository and name it <c>banking-paper</c>.  She will make Bob a collaborator on the repository since she knows Bob's username on GitHub from their previous collaborations.  So there is now a fresh repository on GitHub, which Alice and Bob can manipulate.  We are going to call this the <term>definitive repository</term>, as it will hold the <q>official</q> version of their paper.  In a minute we will setup Alice and Bob with local copies, but they have agreed that those are just their local workspaces and the repository on GitHub always holds the latest, and presumably best, version of their paper.</p>
+
+                <p><xref ref="github-clone" /> contains the necessary instructions for this paragraph, but are more general, so read them and this paragraph through completely before doing anything.  In particular, ignore any discussion of <q>forks</q> until <xref ref="control" />.  Alice should make a copy of the fresh repository onto her work computer, and Bob should do the same.  If you are playing both sides this exercise yourself, copy the repository once, and then rename the <c>banking-paper</c> directory to <c>alice-banking</c>.  Then copy again and rename the resulting directory as <c>bob-banking</c>.  These changes have zero effect on how your repository behaves, but you will need to mentally figure out which files you should be working with in the remainder of the exercise.</p>
+
+                <p>In principle, Alice and Bob are totally setup and organized, and never even need to visit the GitHub site ever again.  But GitHub has some nice tools and Alice and Bob have decided to be 100<percent /> transparent in their work.  A GitHub <term>issue</term> is like a topic on an online discussion forum.  It is designed mostly for reporting and discussing bugs in software, or requesting and implementing new features in software.  But they can also be used for planning and discussion.  Alice and Bob would like to plan their writing as an open discussion on GitHub, deciding that Alice will concentrate on the introduction since she is the better overall writer, and Bob will therefore get started on the section with the details of the vulnerability.  They will work more closely on the final section containing recommendations.</p>
+
+                <p>So in our exercise, Alice should create a branch off of <c>master</c> named <c>intro</c>, create a file <c>intoduction.txt</c>, add it to her branch, make some edits, commit the changes, and so on.  Bob should do similarly but make a branch off <c>master</c> named <c>vulnerable</c> where he adds and edits a file <c>vulnerability.txt</c> as a series of commits.  Recall that <xref ref="principle-branch-often" /> says Alice and Bob should do all of their work on branches.</p>
+
+                <p>Alice had the simpler task, so let us assume she finishes the introduction first.  She does not know she is first, she does not even have any idea where Bob is in his writing.  She has been doing her best to get the introduction right, and to not disturb Bob, who is presumably also working hard.  So Alice suspects there are no new commits on the <c>master</c> branch, but does not really know.  OK, Alice is going to update <c>master</c> with a <term>pull</term>, see no new commits there, do a fast-forward merge of her <c>intro</c> branch into <c>master</c> locally, and then <term>push</term> her <c>master</c> branch to GitHub.  We will do the details carefully, but recognize that the <c>push</c> and <c>pull</c> are the only new concepts we did not cover in <xref ref="solo" />.</p>
+
+                <!-- origin  https://github.com/rbeezer/banking-paper.git -->
+                <p>But first, a bit of diagnostic work.  Alice's repository was copied from GitHub and therefore is aware of its heritage.</p>
+
+                <console>
+                    <prompt>alice@work:~/papers/banking-paper$ </prompt>
+                    <input>git remote -v</input>
+                    <output>
+                    origin  https://github.com/alice-jones/banking-paper.git (fetch)
+                    origin  https://github.com/alice-jones/banking-paper.git (push)
+                    </output>
+                </console>
+
+                <p>Alice's local version of the repository has a <term>remote</term> that carries the information necessary to communicate with the definitive repository.  Since Bob made a similar copy he has an <em>identical</em> remote (remember the co-authors are sharing a definitive repository in Alice's account).  The remote goes by the name <c>origin</c>, which is customary, similar to the <c>master</c> branch.  You can add as many remotes as you like, putting your repository in contact with as many different copies as you can think of.</p>
+
+                <console>
+                    <prompt>alice@work:~/papers/banking-paper$ </prompt>
+                    <input>git checkout master</input>
+                    <output>
+                    Switched to branch 'master'
+                    Your branch is up-to-date with 'origin/master'.
+                    </output>
+                </console>
+
+                <p>Notice that <c>git</c> seems to know something about the state of your local <c>master</c> in relation to the <c>origin/master</c> in the copy on GitHub.  Let us check anyway.</p>
+
+                <console>
+                    <prompt>alice@work:~/papers/banking-paper$ </prompt>
+                    <input>git pull</input>
+                    <output>
+                    Already up-to-date.
+                    </output>
+                </console>
+
+                <p>So Alice attempted to update her local <c>master</c> branch from the definitive repository on GitHub, but there was nothing new to use as an update (her <c>master</c> is <c>up-to-date</c>).  As we suspected (or hoped!), Bob is still working on the technical details locally.  In case it was not obvious, we did not have to bother Bob with an email asking where he was with his task.  Now Alice is going to merge her <c>intro</c> branch into <c>master</c>, which will be a fast-forward merge since <c>master</c> has not evolved beyond her original branch point for <c>intro</c>.</p>
+
+                <console>
+                    <prompt>alice@work:~/papers/banking-paper$ </prompt>
+                    <input>git merge intro</input>
+                    <output>
+                    Fast-forward
+                     introduction.txt | +++++++++++++
+                     1 file changed, 25 insertions(+), 0 deletions(-)
+                     create mode 100644 introduction.txt
+                    </output>
+                </console>
+
+                <p>Alice has incorporated her introduction to the <c>master</c> branch, but now will make it part of the definitive repository with a <c>push</c>.  Note that Alice is still on her <c>master</c> branch.</p>
+
+                <console>
+                    <prompt>alice@work:~/papers/banking-paper$ </prompt>
+                    <input>git push</input>
+                    <output>
+                    Username for 'https://github.com': alice-jones
+                    Password for 'https://alice-jones@github.com': xxxxxxxxxx
+                    Counting objects: 3, done.
+                    Delta compression using up to 8 threads.
+                    Compressing objects: 100% (2/2), done.
+                    Writing objects: 100% (3/3), 287 bytes | 0 bytes/s, done.
+                    Total 3 (delta 0), reused 0 (delta 0)
+                    To https://github.com/alice-jones/banking-paper.git
+                       80a9eb3..1aaedaf  master -> master
+                    </output>
+                </console>
+
+                <p>Notice that Alice must sign in to GitHub, since only she and Bob are allowed to modify the repository (the world can view it and copy it, not modify it).  So Alice has placed her introduction in the definitive repository without any additional coordination with Bob.  Time is important, so Alice initiates an issue on GitHub to discuss their recommendations, which will now interrupt Bob, but they need to form a plan.  However, without waiting for Bob's reply, Alice creates a new branch off <c>master</c> named <c>last-chapter</c> where she simply adds an empty file named <c>recommendations.txt</c>.  She repeats the steps above and with a fast-forward merge, updates her local <c>master</c> and pushes it to the definitive repository on GitHub.  Alice can now clean up by deleting her <c>intro</c> and <c>last-chapter</c> branch pointers that have become obsolete.</p>
+
+                <p>Now that Alice has communicated with a public repository, known to the world, it is the right time to introduce a principle that we will illustrate subsequently.</p>
+
+                <principle xml:id="principle-public-commits">
+                    <title>Never Alter a Public Commit</title>
+
+                    <statement>
+                        <p>Never, ever, alter in any way a commit that has been made available to anybody else.</p>
+                    </statement>
+                </principle>
+
+                <p>We discussed the nature of commit hashes in <xref ref="commit-hashes" />.  We have seen how a local rebase changes commit hashes in <xref ref="hero-heroine-edit" />.  And we have a principle about a <c>rebase</c> changing hashes, while a <c>merge</c> does not (<xref ref="principle-rebase-merge" />).  Alice can rebase her branch all she wants within her repository on her local computer, but the instant she pushes commits to the definitive repository, they become available to her co-author (Bob), and to the <em>entire world</em>.  The commit hash for each of these commits is a globally unique ID (<term>GUID</term>).  There are ways to modify these public commits in the definitive repository, but this would be tantamount to chopping off somebody's finger and replacing it with a new one with a different fingerprint.  Don't do it!</p>
+
+                <p>Why not?  All of <c>git</c>'s coordination is predicated on identical commits having identical ID (the commit hash).  In <xref ref="control" /> we will expand our circle of contributors to anybody in the world (don't panic, we will have a procedure for approving changes before they go into the definitive repository).  Manipulating a public commit will totally confuse <c>git</c>, make a big mess, and infuriate your collaborators, whose copies of the repository are no longer consistent with your ill-advised action.  This may be the only advice that all the Internet <c>git</c> commentators can agree on.  If you follow the procedures we are describing, this will never be a danger.  But when you push a commit to the master branch of the definitive repository and feel like you made a mistake, resist the temptation to go backwards locally and then do a <q>forced push</q> to the definitive repository.  You might get away with it for a while, but eventually you will regret it.  Just live with it (a misspelled commit message), or add another commit to fix your mistake (a grammatically poor sentence).  And forget we even mentioned the possibility of changing public commits.</p>
+
+                <p>Back to our exercise, now Bob has finished up his section, so he wants to make it part of the definitive repository.  He suspects Alice has finished the introduction, since she was eager to discuss the recommendations.  So, just like Alice, he is going to update his <c>master</c> branch.</p>
+
+                <console>
+                    <prompt>bob@laptop:~/publications/banking-paper$ </prompt>
+                    <input>git checkout master</input>
+                    <output>
+                    Switched to branch 'master'
+                    Your branch is up-to-date with 'origin/master'.
+                    </output>
+                </console>
+
+                <p>Notice that this particular <c>up-to-date</c> message is misleading.  Bob will really check with a pull.  Remember that Bob has a remote named <c>origin</c>, with connection information for the definitive repository.  (Why doesn't a pull require a login?)</p>
+
+                <console>
+                    <prompt>bob@laptop:~/publications/banking-paper$ </prompt>
+                    <input>git pull</input>
+                    <output>
+                    remote: Counting objects: 2, done.
+                    remote: Compressing objects: 100% (2/2), done.
+                    remote: Total 2 (delta 0), reused 2 (delta 0), pack-reused 0
+                    Unpacking objects: 100% (2/2), done.
+                    From https://github.com/alice-jones/banking-paper
+                       1aaedaf..1912c1b  master     -> origin/master
+                    Updating 80a9eb3..1912c1b
+                    Fast-forward
+                     introduction.txt    | +++++++++++++
+                     recommendations.txt | 0
+                     2 files changed, 25 insertions(+), 0 deletions(-)
+                     create mode 100644 introduction.txt
+                     create mode 100644 recommendations.txt
+                    </output>
+                </console>
+
+                <p>Bob just picked up Alice's introduction section and empty recommendations section from the definitive repository.  That's good.  Do you see the subtlety?  Think carefully about it for a minute, this is a major concept.  The branch pointer <c>master</c> in Bob's local repository just advanced two commits forward from the branch point of the <c>vulnerable</c> branch he has been working on.  Bob sees:</p>
+
+                <console>
+                    <prompt>bob@laptop:~/publications/banking-paper$ </prompt>
+                    <input>git show-branch</input>
+                    <output>
+                    * [master] Empty chapter for recommendations
+                     ! [vulnerable] Vulnerability section
+                    --
+                    *  [master] Empty chapter for recommendations
+                    *  [master^] Introduction
+                     + [vulnerable] Vulnerability section
+                    *+ [master~2] Initial commit
+                    </output>
+                </console>
+
+                <p>Before Bob pushes his technical section, he will rebase his <c>vulnerable</c> branch onto <c>master</c>.  This would normally risk a <term>merge conflict</term>, but he knows Alice has work only in <c>introduction.txt</c>, his new work is only in <c>vulnerability.txt</c>, and <c>recommendations.txt</c> is empty.  So Bob switches to <c>vulnerable</c>, rebases onto <c>master</c>, switches to <c>master</c>, merges vulnerable into <c>master</c> (which is a fast-forward merge, as expected), pushes <c>master</c> to <c>origin/master</c>, and cleans up by deleting the obsolete <c>vulnerable</c> branch pointer.</p>
+
+                <console>
+                    <prompt>bob@laptop:~/publications/banking-paper$ </prompt>
+                    <input>git checkout vulnerable</input>
+                    <output>
+                    Switched to branch 'vulnerable'
+                    </output>
+                    <!--  -->
+                    <prompt>bob@laptop:~/publications/banking-paper$ </prompt>
+                    <input>git rebase master</input>
+                    <output>
+                    First, rewinding head to replay your work on top of it...
+                    Applying: Vulnerability section
+                    </output>
+                    <!--  -->
+                    <prompt>bob@laptop:~/publications/banking-paper$ </prompt>
+                    <input>git checkout master</input>
+                    <output>
+                    Switched to branch 'master'
+                    Your branch is up-to-date with 'origin/master'.
+                    </output>
+                    <!--  -->
+                    <prompt>bob@laptop:~/publications/banking-paper$ </prompt>
+                    <input>git merge vulnerable</input>
+                    <output>
+                    Updating 1912c1b..bceacaa
+                    Fast-forward
+                     vulnerability.txt | +++++++++++++
+                     1 file changed, 90 insertions(+), 0 deletions(-)
+                     create mode 100644 vulnerability.txt
+                    </output>
+                    <!--  -->
+                    <prompt>bob@laptop:~/publications/banking-paper$ </prompt>
+                    <input>git push</input>
+                    <output>
+                    Username for 'https://github.com': bob-smith
+                    Password for 'https://bob-smith@github.com': xxxxxxxxxxx
+                    Counting objects: 2, done.
+                    Delta compression using up to 8 threads.
+                    Compressing objects: 100% (2/2), done.
+                    Writing objects: 100% (2/2), 279 bytes | 0 bytes/s, done.
+                    Total 2 (delta 1), reused 0 (delta 0)
+                    To https://github.com/alice-jones/banking-paper.git
+                       1912c1b..bceacaa  master -> master
+                    </output>
+                    <!--  -->
+                    <prompt>bob@laptop:~/publications/banking-paper$ </prompt>
+                    <input> git branch -d vulnerable</input>
+                    <output>
+                    Deleted branch vulnerable (was bceacaa).
+                    </output>
+                </console>
+
+                <p>That looks complicated, but you will do it over and over if you collaborate with this model.  Update master from the definitive repository, rebase (advance) your working branch to the tip of master, fast-forward merge your working branch into your local master, then push your improved master to the definitive repository.  The clear and present danger here is to forget the first step, updating your master.  You may have little idea what has happened to the definitive repository if you have had your head down working, so you need to <em>always</em> remember to update before interacting with the definitive repository.</p>
+            </statement>
+        </exercise>
+
+        <p>Where are we now?  Alice and Bob both have the same introduction, and they both have an empty section destined to hold recommendations.  Bob has pushed his technical section to the definitive repository, just now.  However, Alice does not yet have the technical section on the vulnerability.  Notice that at any time, Alice (or Bob) can make a commit on their present branch (so their working directory is clean), checkout <c>master</c>, and pull <c>origin/master</c> from the definitive repository.  This will likely advance the branch pointer for <c>master</c> but there is no harm in that at all.  It is good, since now Alice's local master has the latest changes from the definitive repository and she can see how the project is progressing.</p>
+
+        <p>Alice can return to her working branch, <em>exactly</em> as it was after she switched away from it.  <em>At any time</em>, she can <em>elect</em> to rebase her working branch on a new tip of the <c>master</c> branch.  And it would be best practice to rebase frequently and perhaps only encounter minor, easily resolvable merge conflicts regularly, rather than a head-in-the-sand approach that waits to do a single massive rebase before adding to the definitive repository.  Even better would be to rebase onto an updated master immediately and then push immediately.  Work can continue on a fresh local branch.  That feels like a principle.</p>
+
+        <principle xml:id="principle-rebase-often">
+            <title>Rebase Working Branches Often</title>
+
+            <statement>
+                <p>Frequently rebase private working branches onto an up-to-date master branch.</p>
+            </statement>
+        </principle>
+
+        <p>What does <q>private</q> mean here?  We have seen that commit hashes form a chain of repeated hashes all the way back to the root commit (<xref ref="commit-hashes" />), and that we can identify commits by the leading digits of a commit hash.  Also, a rebase will always change some commit hashes (<xref ref="principle-rebase-merge" />).  So while the present principle advocates frequent rebases, never perform a rebase that changes a commit hash that has been made available to somebody else.  This is the advice contained in <xref ref="principle-public-commits" />, and now could be a good time to back and re-read the discussion that follows it.</p>
+
+        <p>We have seen how to pull from the <c>master</c> branch of the definitive repository, and how to push commits to the <c>master</c> branch of the definitive repository.  So we have the tools for two-way communication between repositories.  We can pull from public repositories at will, but need permission to push to repositories where we are trusted to make unilateral changes.</p>
+    </section>
+
+    <section>
+        <title>Conflicting Edits</title>
+
+        <p>Let us do one more exercise with Alice and Bob.</p>
+
+        <exercise>
+            <title>Alice and Bob Edit Simultaneously</title>
+
+            <statement>
+                <p>With agreement about the recommendations, and in a rush, both Alice and Bob are going to simultaneously perform conflicting edits in the recommendations section.  We will purposely engineer a merge conflict as an exercise, so follow the instructions carefully.</p>
+
+                <p>Alice should make a new branch, named <c>rec</c>, for her work on the recommendations.  She should write three short paragraphs in <c>recommendations.txt</c>, separated by blank lines, and she should commit those changes on her branch.  Bob should make a new branch, named <c>recommend</c>, and should also author three short paragraphs in <c>recommendations.txt</c>, separated by blank lines, and he should commit those changes on his branch.  However, Alice and Bob should collude (outside of GitHub) to have identical first and third paragraphs, but radically different second paragraphs.  Of course, this is unrealistic, but this makes the exercise work.  If you put Alice's name into her second paragraph someplace, and put Bob's name into his second paragraph, the exercise will be even more informative.</p>
+
+                <p>We will let Alice go first, since she got a head-start on Bob originally and she does not yet have the section with the technical details of the vulnerability.  Alice updates her <c>master</c> branch from the definitive repository (<c>origin/master</c>), and in doing so, she will pickup Bob's technical section.  Then she should rebase her <c>rec</c> branch onto master, which will go smoothly.  Then she merges <c>rec</c> into her local <c>master</c> (which will be a fast-forward merge) and push the improved <c>master</c> to <c>origin/master</c>.</p>
+
+                <p>So the definitive repository has Alice's recommendation section, while Bob's recommendations are still local to his repository, and <c>origin/master</c> has advanced beyond Bob's local <c>master</c>.  Here is the transcript for Bob (again).</p>
+
+                <console>
+                    <prompt>bob@laptop:~/publications/banking-paper$ </prompt>
+                    <input>git checkout master</input>
+                    <output>
+                    Switched to branch 'master'
+                    Your branch is up-to-date with 'origin/master'.
+                    </output>
+                    <!--  -->
+                    <prompt>bob@laptop:~/publications/banking-paper$ </prompt>
+                    <input>git pull</input>
+                    <output>
+                    remote: Counting objects: 3, done.
+                    remote: Compressing objects: 100% (2/2), done.
+                    remote: Total 3 (delta 1), reused 3 (delta 1), pack-reused 0
+                    Unpacking objects: 100% (3/3), done.
+                    From https://github.com/alice-jones/banking-paper
+                       bceacaa..b7abe18  master     -> origin/master
+                    Updating bceacaa..b7abe18
+                    Fast-forward
+                     recommendations.txt | 5 +++++
+                     1 file changed, 5 insertions(+)
+                    </output>
+                    <!--  -->
+                    <prompt>bob@laptop:~/publications/banking-paper$ </prompt>
+                    <input>git checkout recommend</input>
+                    <output>
+                    Switched to branch 'recommend'
+                    </output>
+                    <!--  -->
+                    <!--  -->
+                    <prompt>bob@laptop:~/publications/banking-paper$ </prompt>
+                    <input>git rebase master</input>
+                    <output>
+                    First, rewinding head to replay your work on top of it...
+                    Applying: Bob recommends
+                    Using index info to reconstruct a base tree...
+                    M       recommendations.txt
+                    Falling back to patching base and 3-way merge...
+                    Auto-merging recommendations.txt
+                    CONFLICT (content): Merge conflict in recommendations.txt
+                    Failed to merge in the changes.
+                    Patch failed at 0001 Bob recommends
+                    The copy of the patch that failed is found in:
+                       ~/publications/banking-paper/.git/rebase-apply/patch
+
+                    When you have resolved this problem, run "git rebase --continue".
+                    If you prefer to skip this patch, run "git rebase --skip" instead.
+                    To check out the original branch and stop rebasing, run "git rebase --abort".
+                    </output>
+                </console>
+
+                <p>Boom!  The scariest thing that can happen in <c>git</c>.  But you know we engineered this conflict to happen and we are not going to panic.  (If you do want to panic, try <c>git rebase --abort</c> as suggested and when you collect yourself and settle down, come back to try the <c>rebase</c> again.)</p>
+
+                <p>Your hint about where the conflict lies is in the line<pre>
+                CONFLICT (content): Merge conflict in recommendations.txt
+                </pre>Details on resolving conflicts are in <xref ref="merge-conflict" /> so head there for details on what to do now, specifically see the instructions for a <q>rebase conflict</q> in <xref ref="resolving-rebase-conflict" />.  Briefly, Bob will open <c>recommendations.txt</c> in his editor and see the two different second paragraphs adjacent to each other, with Alice's official second paragraph first, and his proposed second paragraph afterwards.  Now there is no notion of official or not, Bob and Alice are equals.  But Alice got there first, so Bob has the responsibility to decide which paragraph to keep, or to keep both, and in what order.  If Alice does not like Bob's decisions, they can do another round of changes (perhaps after some discussion on a GitHub issue, including commit hashes in the discussion to reference the details of any disagreement).</p>
+
+                <p>Done resolving the conflict, Bob's <c>recommend</c> branch now comes off the tip of master and is positioned for a fast-forward merge that he can then push to <c>origin/master</c>.</p>
+
+                <console>
+                    <!--  -->
+                    <prompt>bob@laptop:~/publications/banking-paper$ </prompt>
+                    <input>git show-branch</input>
+                    <output>
+                    ! [master] Recs by Alice
+                     * [recommend] Bob recommends
+                    --
+                     * [recommend] Bob recommends
+                    +* [master] Recs by Alice
+                    </output>
+                    <!--  -->
+                    <!--  -->
+                    <prompt>bob@laptop:~/publications/banking-paper$ </prompt>
+                    <input>git checkout master</input>
+                    <output>
+                    Switched to branch 'master'
+                    Your branch is up-to-date with 'origin/master'.
+                    </output>
+                    <!--  -->
+                    <!--  -->
+                    <prompt>bob@laptop:~/publications/banking-paper$ </prompt>
+                    <input>git merge recommend</input>
+                    <output>
+                    Updating b7abe18..3bd7a4a
+                    Fast-forward
+                     recommendations.txt | 4 +++-
+                     1 file changed, 3 insertions(+), 1 deletion(-)
+                    </output>
+                    <!--  -->
+                    <!--  -->
+                    <prompt>bob@laptop:~/publications/banking-paper$ </prompt>
+                    <input>git push</input>
+                    <output>
+                    Username for 'https://github.com': bob-smith
+                    Password for 'https://bob-smith@github.com': xxxxxxxx
+                    Counting objects: 3, done.
+                    Delta compression using up to 8 threads.
+                    Compressing objects: 100% (3/3), done.
+                    Writing objects: 100% (3/3), 346 bytes | 0 bytes/s, done.
+                    Total 3 (delta 1), reused 0 (delta 0)
+                    To https://github.com/alice-jones/banking-paper.git
+                       b7abe18..3bd7a4a  master -> master
+                    </output>
+                    <!--  -->
+                    <prompt>bob@laptop:~/publications/banking-paper$ </prompt>
+                    <input>git branch -d recommend</input>
+                    <output>
+                    Deleted branch recommend (was 3bd7a4a).
+                    </output>
+                    <!--  -->
+                    <prompt>bob@laptop:~/publications/banking-paper$ </prompt>
+                    <input>git show-branch</input>
+                    <output>
+                    [master] Bob recommends
+                    </output>
+                </console>
+
+                <p>Of course, now Alice does not have the edits Bob made when adding his recommendations and resolving the conflict in the rebase.  But by now this should be routine. Alice just pulls from <c>origin/master</c> and is up-to-date.  Now, all three repositories have exactly the same changes on their respective <c>master</c> branches.</p>
+            </statement>
+        </exercise>
+
+        <p>After these two exercises, Alice and Bob have a joint paper that they are ready to upload to the arXiv.  They can <term>tag</term> the final commit with the identification information and revision number the arXiv assigns, they can digitally <term>sign</term> the tag with their GPG keys, attesting to the genuineness of the work (<xref ref="tag-sign" />).  Because the commit hashes are chained, any tampering with any of the commits will break the digital signature.  The commit hash for this tag could be good information to include at the arXiv site as well.</p>
+    </section>
+
+    <conclusion>
+        <p>Notice that Alice and Bob only had to communicate about whose account to use for hosting the paper and on decisions about content.  Never did one have to wait on the other, nor did they pass around files with version numbers.  And since Alice pushed her recommendations to the definitive repository first, it became Bob's responsibility to edit a conflict locally before he could push his idea of how the recommendations should go.</p>
+
+        <p>To summarize, the drill is always the same.  Edit locally on a branch, update your master by pulling from master at the definitive repository, rebase your branch on master, while resolving any conflicts, merge your branch into master (fast-forward), push master to the definitive repository.  We call this the <xref provisional="six-step recipe" /> and you can find a general version in our quick-reference appendix, <xref ref="quick-reference" />.</p>
+
+        <p>There is just one more general <c>git</c> concept left, the pull request, so continue on to <xref ref="control" /> to see how to open up your collaborations to the long tail of contributors from the entire world.</p>
+    </conclusion>
 </chapter>
 
