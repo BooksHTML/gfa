@@ -15,6 +15,12 @@
     </introduction>
 
     <section>
+        <title>Word Diff</title>
+
+        <p><c>git diff --word-diff</c></p>
+    </section>
+
+    <section>
         <title>Impersonating a Commiter</title>
 
         <p></p>
