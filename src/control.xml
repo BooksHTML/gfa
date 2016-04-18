@@ -84,28 +84,34 @@
 
                 <li>
                     <p><c>git checkout &lt;branch_name&gt;</c></p>
-                    <p>Switch to your new branch, edit files, and accumulate new commits, just like before. When your branch is just the way you would like it to look, it is time to go public.  Ready?</p>
+                    <p>Switch to your new branch, where you are going to work (<xref ref="principle-branch-often" />).</p>
                 </li>
 
                 <li>
-                    <p>Well, not so fast.  It is conceivable that the <c>master</c> branch has evolved significantly during the time you were editing and committing in the previous step.  So let us bring your contribution up-to-date.</p>
-                    <p><c>git checkout master</c></p>
+                    <p><c>git add &lt;file1&gt; &lt;file2&gt; &lt;file3&gt;</c></p>
+                    <p><c>git commit -m "An informative message"</c></p>
+                    <p>Edit files, and accumulate new commits, just like before. When your branch is just the way you would like it to look, it is time to go public.  Ready?</p>
+                </li>
+
+                <li>
                     <p><c>git pull upstream master</c></p>
-                    <p><c>git checkout &lt;branch_name&gt;</c></p>
-                    <p><c>git rebase master</c></p>
-                    <p>The first two commands bring your repository up-to-date with the <c>master</c> branch in the definitive repository.  Then you switch to your branch with your new work, and much as we have done in the previous chapters, you rewind your branch and replay it off the commit at the tip of <c>master</c>.</p>
+                    <p>While on the <c>&lt;branch_name&gt;</c> branch, you are pulling in any new commits from the master branch of the definitive repository and merging them into your working branch.</p>
 
-                    <p>There is the very real possibility of a conflict in this rebase.  But you would much, much rather discover this yourself now, in the privacy of your own laptop, instead of an overlord getting all geared up to evaluate your public pull request and being immediately stymied by discovering there is a merge conflict that will simply be handed right back to you to resolve.  When this happens, the overlord is just going to let you know, and then head off to evaluate somebody else's pull request.</p>
+                    <p>There is the very real possibility of a conflict in this merge.  But you would much, much rather discover this yourself now, in the privacy of your own laptop, instead of an overlord getting all geared up to evaluate your public pull request and being immediately stymied by discovering there is a merge conflict that will simply be handed right back to you to resolve.  When this happens, the overlord is only going to let you know about it, and then head off to evaluate somebody else's pull request.</p>
 
-                    <p>A conflict will be resolved the same way as .... <xref provisional="small-group-rebase-conflict" />.  If there was no conflict in the rebase, all the better.  Now you have done all you can<ndash />your work is all packaged up nicely and consistent with the absolute latest changes in the definitive repository, so you are ready to go public.</p>
+                    <p>When you do have a conflict in the merge, head out to <xref ref="resolving-merge-conflict" /> in <xref ref="merge-conflict" /> for instructions on resolving it.  Now you have done all you can.  Your work is all packaged up nicely and consistent with the absolute latest changes in the definitive repository, so you are ready to go public.</p>
                 </li>
 
                 <li>
                     <p><c>git push origin &lt;branch_name&gt;</c></p>
                     <p></p>
-                    <p> Remember that <c>origin</c> is the name your laptop has for your fork of the project in your GitHub account. Now your fork has a new branch, which you would like to see also incorporated into the the definitive repository.</p>
+                    <p> Remember that <c>origin</c> is the name your laptop has for your fork of the project in your GitHub account. Now your fork has a new branch, which you would like to see also incorporated into the definitive repository.</p>
+                </li>
 
-                    <p>Use your browser to go to GitHub, and go to your fork of the project.  GitHub knows that you just put a new branch on that fork, so you should see a prominent green button on the right which says <c>Compare &amp; pull request</c>.</p>
+                <li>
+                    <p>Go to your fork on GitHub.</p>
+
+                    <p>Use your browser to visit your GitHub account, and locate your fork of the project.  GitHub knows that you just put a new branch on that fork, so you should see a prominent green button on the right which says <c>Compare &amp; pull request</c>.</p>
 
                     <p>Click that button and you will see a page with a text box where you can describe the changes you have made.  It is considered polite to describe where those changes can be seen (in the final product, not in the source files) so that the reviewer can take a look at the effect of your changes.  For example, say something like <q>New exercises for Chapter 6, see page 88.</q></p>
 
@@ -234,12 +240,12 @@
     <conclusion>
         <p>Large projects use a model similar to this one.  Sage, an open source computer algebra system, has hundreds of contributors with a single <term>release manager</term> as the overlord.  Reviews of proposed branches are distributed among the contributors themselves, so if the release manager is familiar with the reputations and expertise of members of the community, it can be feasible for a single person to roll up fifty or so contributions on a weekly basis and still maintain the integrity of the project, and their sanity.</p>
 
-        <p>Notice that with a large project, there are many people working asynchronously and the potential for conflicts is very real as the mainline branch may advance rapidly from where a contributor initiated it.  In the Sage project, reviews are not assigned, and are voluntary.  A diligent contributor might regularly merge the <c>master</c> branch into their proposed branch, creating merge commits every time, with or without any necessary edits, which are then pushed to the public equivalent of GitHub.  In this way, the contributor's proposed branch is always consistent with a relatively recent version of the definitive repository. Due to this, and to the public nature of the commits on a pull request, there will be many merge commits in such a repository.  The network of commits begins to look less like a tree, and more resembles a slow, broad, meandering river with many branches forming, coming back together, splitting again, reforming,<ellipsis />  Mathematicians refer to this network as a directed acyclic graph, which you may see described as <q>the DAG</q>.  There is always an unambiguous path through the commits back to the original root commit.</p>
-
         <figure xml:id="figure-xkcd-git">
             <caption>xkcd <url href="http://xkcd.com/1597/"><q>Git</q></url> (used with permission)</caption>
             <image source="images/git.png" width="50%" />
         </figure>
+
+        <p>Notice that with a large project, there are many people working asynchronously and the potential for conflicts is very real as the mainline branch may advance rapidly from where a contributor initiated it.  In the Sage project, reviews are not assigned, and are voluntary.  A diligent contributor might regularly merge the <c>master</c> branch into their proposed branch, creating merge commits every time, with or without any necessary edits, which are then pushed to the public equivalent of GitHub.  In this way, the contributor's proposed branch is always consistent with a relatively recent version of the definitive repository. Due to this, and to the public nature of the commits on a pull request, there will be many merge commits in such a repository.  The network of commits begins to look less like a tree, and more resembles a slow, broad, meandering river with many branches forming, coming back together, splitting again, reforming,<ellipsis />  Mathematicians refer to this network as a directed acyclic graph, which you may see described as <q>the DAG</q>.  There is always an unambiguous path through the commits back to the original root commit.</p>
 
         <p>If you have ever tried to collaborate on a writing project using email with attachments of traditional word-processing files (with or without <q>track changes</q>), then you may already be starting to appreciate how <c>git</c>'s branches and remotes, along with GitHub's pull requests and notifications, can free contributors and overlords to collaborate efficiently and concentrate on content with very little procedural friction.</p>
     </conclusion>
