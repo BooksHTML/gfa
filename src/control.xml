@@ -11,8 +11,6 @@
     <title>In Control</title>
 
     <introduction>
-        <p>NEEDS CLARIFICATION AS ORIGIN CHANGES HERE</p>
-
         <p>We now turn to the situation where your book may have numerous collaborators. Maybe your book is an anthology of short stories with thirty contributors, or maybe it is a human anatomy textbook with the potential for students to discover small errors for many, many years down the road.  If the anatomy textbook has four authors, you might begin as colleagues as in <xref ref="friends" />, but later may have specialists reviewing and editing select chapters, until finally the book is published and students suggest changes and corrections for the inevitable Second Edition. <c>git</c> is flexible enough to help you at every step.</p>
 
         <p>So the model here is a select few that are in control of the repository.  They might be called authors or editors, but we will refer to them generically as <term>overlords</term> (WordNet: <q>a person who has general authority over others</q>).  In our opinion many projects should be large, because you want to encourage people to contribute.</p>
@@ -21,14 +19,14 @@
     <section>
         <title>Creating a Pull Request</title>
 
-        <p>A <term>pull request</term> is a way for a contributor to provide changes to your project, such as new material, suggestions for changes, or corrections, in an <q>embargoed</q> way.  This is perfect when the collaborator is a junior partner in your project, or even a total stranger.  As an overlord you retain control, and as a contributor you have total freedom to craft your contribution exactly as you think it should be, and to make it extremely easy.  For the rest of this section, we will stop supposing the project is yours, but instead, we adopt the point-of-view of a collaborator.  Here is the suggested setup.</p>
+        <p>A <term>pull request</term> is a way for a contributor to provide changes to your project, such as new material, suggestions for changes, or corrections, in an <q>embargoed</q> way.  This is perfect when the collaborator is a junior partner in your project, or even a total stranger.  As an overlord you retain control, and as a contributor you have total freedom to craft your contribution exactly as you think it should be, and to make it extremely easy for an overlord to accept.  For the rest of this section, we will stop supposing the project is yours, but instead, we adopt the point-of-view of a collaborator.  Here is the suggested setup.</p>
 
         <ul>
-            <li><p>There is one <q>definitive</q> version of the project as a <c>git</c> repository.  It resides on GitHub (see <xref ref="github-start" />).  One or more people have control over the definitive repository (the overlords).  You do not need to know who the overlords are.  Everyone's goal is to have their changes become part of the definitive repository.</p></li>
+            <li><p>As in <xref ref="friends" /> there is one <q>definitive</q> version of the project as a <c>git</c> repository.  It resides on GitHub (see <xref ref="github-start" />).  One or more people have control over the definitive repository (the overlords).  You do not need to know who the overlords are.  Everyone's goal is to have their changes become part of the definitive repository.</p></li>
 
-            <li><p>Every person who want to contribute to the project has a <term>fork</term>, which is a <c>git</c> repository under their own personal account on GitHub.  (Those mysterious people who have control over the definitive repository:  they also have their own forks on their own GitHub accounts.)  A fork is a copy of the definitive repository, and your fork is completely under your control.</p></li>
+            <li><p>Every person who wants to contribute to the project has a <term>fork</term>, which is a <c>git</c> repository under their own personal account on GitHub.  (Those mysterious people who have control over the definitive repository:  they also have their own forks in their own GitHub accounts.)  A fork is a copy of the definitive repository, and your fork is completely under your control.</p></li>
 
-            <li><p>Everyone who wants to contribute to the project also has a copy of their fork on their own computer.  (We now know of three copies of the project: definitive, your fork on GitHub, your fork on your computer.)  We will refer to this as "the version on your laptop", although your computer might be a desktop machine, or something in the cloud, or something else.  (The technical term for "version on your laptop"is <term>clone</term>, but we will not use that terminology. But keep in mind that the version on your laptop was copied from your fork, not from the definitive version.)</p></li>
+            <li><p>Everyone who wants to contribute to the project also has a copy of their fork on their own computer.  (We now know of three copies of the project: definitive, your fork on GitHub, your fork on your computer.)  We will refer to this as <q>the version on your laptop,</q> although your computer might be a desktop machine, or something in the cloud, or something else.  (The technical term for <q>version on your laptop</q> is <term>clone</term>, but we will not use that terminology. Keep in mind that the version on your laptop was copied from your fork, not from the definitive repository.)</p></li>
 
             <li>
                 <p>The repository on each contributors's individual laptop knows about two repositories on GitHub:</p>
@@ -42,13 +40,13 @@
             </li>
         </ul>
 
-        <p>To summarize, everyone has a repository on their laptop.  Everyone has the same <c>upstream</c> remote: it is the definitive repository.  Everyone has a different <c>origin</c>, which is their own personal fork (a repository) in their account on GitHub.  See <xref ref="github-start" /> for details on forking a project on GitHub and setting up your laptop with a copy.)</p>
+        <p>To summarize, everyone has a repository on their laptop.  Everyone has the same <c>upstream</c> remote: it is the definitive repository.  Everyone has a different <c>origin</c>, which is their own personal fork (a repository) in their account on GitHub.  Notice that in <xref ref="friends" /> the <c>origin</c> remote was the definitive repository, but now <c>origin</c> is a sort of intermediary between the repository on your laptop and <c>upstream</c>, the definitive repository.  (See <xref ref="github-start" /> for details on forking a project on GitHub and setting up your laptop with a copy.)</p>
 
         <p>Once all of that is set up, you go through the exact same cycle every time you want to contribute changes to the project.  You already know how to work with branches, and their usefullness in a personal project, or with a small group.  <xref ref="branch-management" /> is devoted entirely to how you can work effectively with a branch.</p>
 
         <p>In a big complicated project, like a calculus textbook, there are lots of different things that may need attention.  Maybe you need to put in the solutions to the problems from Chapter 6, or maybe you need to add a new section on the chain rule to Chapter 4, or maybe you need to edit the introduction to Section 5.3.</p>
 
-        <p>With branches, you know that you could use your repository to productively work on all three tasak, swithcing between them at will.  You would have three different branches, <c>solutions-chap-6</c>, <c>chain-rule-section</c>, <c>intro-section5-3</c>, and in each branch you would be doing something a bit different.</p>
+        <p>With branches, you know that you could use your repository to productively work on all three tasks, switching between them at will.  You would have three different branches, <c>solutions-chap-6</c>, <c>chain-rule-section</c>, <c>intro-section5-3</c>, and in each branch you would be doing something a bit different.</p>
 
         <p>Why is this good?  There are many reasons, two of which are: (i) You do not need to mess up the working version of the book, because you are just working on a copy, and (ii) independent changes can be evaluated independently.  Item (ii) suggests the following principle.</p>
 
@@ -74,7 +72,7 @@
                 <li>
                     <p><c>git checkout master</c></p>
                     <p><c>git pull upstream master</c></p>
-                    <p> Remember that <c>upstream</c> is the name your laptop has for the definitive repository.  This checkout and pull will update your <c>master</c> branch with all of the latest changes that constitute the official version of the project.</p>
+                    <p> Remember that <c>upstream</c> is the name your laptop has for the definitive repository.  This checkout and pull will update your local <c>master</c> branch with all of the latest changes that constitute the official version of the project.</p>
                 </li>
 
                 <li>
@@ -151,7 +149,7 @@
 
             <p>GitHub has likely sent you a notification immediately after a contributor has created a pull request, and maybe that email has a link to take you directly there.  But you also need to know how to find any given pull request later.</p>
 
-            <p>Go to the project's home on GitHub and see if there are any pending pull requests.  Note that you are going to the definitive repository, not your own personal fork of the project.  You have your manager hat on now, not your contributor hat.</p>
+            <p>Go to the project's home on GitHub and see if there are any pending pull requests.  Note that you are going to the definitive repository, not your own personal fork of the project.  You have your manager-hat on now, not your contributor-hat.</p>
 
             <p>It is common to see seven tabs across the top of the repository on GitHub:<pre>
             Code  Issues  Pull requests  Wiki  Pulse  Graphs  Settings
@@ -191,12 +189,12 @@
             <p>Now you are looking at a pull request with a description that sounds useful, and there are no conflicts.  The next step is to look at the actual changes the contributor made and their effect on your project.  There are three tabs below the title of the pull request:<pre>
             Conversation    Commits    Files changed
             </pre>Click on <c>Files changed</c>.  Highlighted in red and green will be the lines which were deleted and added (respectively) as part of this pull request.  You need to look carefully at what was written, because this is destined to become an official part of your project.  All large successful projects have standards for writing the source material, and you should check that the author has done a good job.  Suppose, for example, you see the following line added to your calculus textbook:<pre>
-            When looking for a maximum, be sure to check {\em both} end points.
+            When finding a maximum, be sure to check {\em both} end points.
             </pre>The author has not used the LaTeX markup language in the best way, so it would be reasonable to click back to the <c>Conversation</c> tab, and in the comments box put something like<pre>
             Use \emph{...} instead of {\em ...} for emphasis.
             </pre>It is a good idea to look through all of their changes and submit multiple comments (in the same comment box), otherwise both of you will become annoyed if you have to go back and forth several times.</p>
 
-            <p>Assuming you have looked through their changes and the format and content seems to look okay, now you need to actually check that their contribution performs as claimed.  If the project is code, that means you need to compile and run their code.  If it is a book, you need to produce the book with their changes and see that the output looks good.  Here is the procedure for doing a preliminary review within your fork on your laptop (this is your personal sandbox) and then actually incorporating the changes into the definitive repository.</p>
+            <p>Assuming you have looked through the contributor's changes and the format and content seems to look okay, now you need to actually check that their contribution performs as claimed.  If the project is code, that means you need to compile and run their code.  If it is a book, you need to produce the book with their changes and see that the output looks good.  Here is the procedure for doing a preliminary review within your fork on your laptop (this is your personal sandbox) and then actually incorporating the changes into the definitive repository.</p>
 
 
             <list xml:id="reviewing-pull-request">
@@ -223,7 +221,7 @@
                     </li>
 
                     <li>
-                        <p>If everything looks good, then it is easy.  Maybe too easy!  Go back to GitHub and click the big green <c>Merge pull request</c>.  Modify the commit message if necessary, and then click <c>Confirm merge</c>.  GitHub may then say something about deleting a branch which is no longer needed: that is a fine thing to do.</p>
+                        <p>If everything looks good, then it is easy.  Maybe too easy!  Go back to the definitive repository on GitHub and click the big green <c>Merge pull request</c>.  Modify the commit message if necessary, and then click <c>Confirm merge</c>.  GitHub may then say something about deleting a branch which is no longer needed: that is a fine thing to do.</p>
                     </li>
 
                     <li>
