@@ -33,4 +33,12 @@
         </copyright>
     </colophon>
 
+    <preface>
+        <title>How to Read This Book</title>
+
+        <p>The essential concepts of <c>git</c> are treated in the first four chapters, they should be read thoroughly and carefully, in order.  <xref ref="solo" />, <xref ref="friends" />, and <xref ref="control" />, treat the cases, respectively, of one, several, and many collaborators, with very different organizational models, but the concepts are universal to all three models.</p>
+
+        <p>Eventually you will find more intricate topics in <xref ref="merge-conflict" /> and <xref ref="branch-management" /> necessary or useful, and maybe both.  <xref ref="oops" /> explains ways to backup and correct mistakes.  <xref ref="miscellany" /> is a grabbag of short topics that do not fit naturally in the early material and would have just been a distraction.  At some point familiarize yourself with what is on-offer there.  The appendices contain technical information that might change over time, in addition to reference material.</p>
+    </preface>
+
 </frontmatter>
