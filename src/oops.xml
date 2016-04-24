@@ -10,6 +10,20 @@
 <chapter xml:id="oops">
     <title>(*) Oops!</title>
 
-    <p>Sections with titles describing problems, content is fixes.  General overarching advice (stop quickly, diagnostics,directory backup, reflog).</p>
+    <introduction>
+        <p>Sections with titles describing problems, content is fixes.  General overarching advice (stop quickly, diagnostics,directory backup, reflog).</p>
+    </introduction>
+
+    <section>
+        <title>That is So Messed Up</title>
+
+        <p>Suppose you have really made a mess of some file, and you do not even really know just how it happened.  No problem.  With a clean working directory, you can <c>git checkout &lt;ref&gt;</c> where <c>ref</c> is any reference you can think of to refer to a certain commit anywhere in your repository.  This reference could be a branch pointer, like <c>master</c> or <c>heroine</c>, or it could be the leading digits of a commit hash that you locate in the output of <c>git log</c>, like <c>39b56cc9</c>.  This will convert the working directory to some previous state, where your file has what you want.</p>
+
+        <p>Now copy the acceptable version of the file in question to someplace outside of your repository.  Then something like <c>git checkout giraffes</c> will bring you back to where you were.  Now copy the file from outside the repository on top of the messed-up one.  To <c>git</c> the changes will look indistinguisable to you typing at the keyboard to fix everything.  Commit these changes in the usual way as a single changeset and get back to your writing.</p>
+
+        <p>Your history will contain a record of whatever mistake you made, but at least the collection of commits you had created in <c>git</c> allowed you to go back and re-create something acceptably close to your original work.  Note that commiting frequently gives you greater latitude to pick just the right commit for the recovery.</p>
+
+        <p>Of course, if the damage is extensive and several files are affected, you can do the copy and replace with each one.</p>
+    </section>
 
 </chapter>
