@@ -51,7 +51,7 @@ Below are all the steps you typically need for contributing to the project.</p>
             <li xml:id="check-before-submitting">
                 <p>Check your work: run <c>latex</c>, or compile the code,
 or whatever is appropriate for the project.
-Save yourself the embarrasment of having a pull request rejected because
+Save yourself the embarrassment of having a pull request rejected because
 you submitted something broken!</p>
            </li>
 
