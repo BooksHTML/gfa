@@ -15,74 +15,111 @@
     </introduction>
 
     <section>
-        <title>Word Diff</title>
+        <title>(*) Word Diff</title>
 
         <p><c>git diff --word-diff</c></p>
     </section>
 
     <section>
-        <title>Impersonating a Commiter</title>
+        <title>(*) Impersonating a Commiter</title>
 
         <p></p>
     </section>
 
-    <section>
+    <section xml:id="the-stash">
         <title>The Stash</title>
 
-        <p>save, pop, apply -- </p>
+        <p>The <term>stash</term> is a <term>stack</term>, a last-in, first-out arrangment, like a stack of plates in a warmer in a cafeteria.  At any time you can <term>save</term> your changes in a dirty directory with the command <c>git stash save</c> and they are removed from the working directory, thus making the directory clean again, and are saved as a changese in the stash.  This great if you just want to wander off some place else in your repository and you will be right back to your work-in-progress.  So we talk of <q>stashing your changes</q> as a temporary measure.</p>
 
-        <p>git stash list (note branches)
-    git stash pop (likely)
-    git stash drop (remove, default is top)
-    git stash apply (leaves on stack!)
-    git stash show -p (diff of a stash, default is top)</p>
+        <p>When you are a begineer, the stash is very alluring.  Resist the siren call.  It is not a cure-all and there is usually a better way to juggle two things at once.  Remember the three branches of <xref ref="hero-heroine-edit" />?  Here are some notes (which will not explain everything carefully).  Since the stash manipulates the working directory all at once, you have less control than you do with commits, even if the stash seems less permanent.</p>
 
+        <ul>
+            <li>
+                <p><c>git stash save -- "Reworking turtle chapter"</c> will include a message with the entry you place on the stack.  Without it, you get a cryptic automatic message that includes the initialism <c>WIP</c> (work-in-progress).  If you will be away more than ten minutes, a message is a good idea.</p>
+
+                <p>This is like putting a plate into the warmer, perhaps with a special note scribbled onto it.</p>
+            </li>
+
+            <li>
+                <p><c>git stash show</c> will show you the diff of the changeset on top.</p>
+
+                <p>This is like looking real closely at the top plate.</p>
+            </li>
+
+            <li>
+                <p><c>git stash list</c> will show you all the changesets currently in the stash, so it helps to provide good messages if you have many.</p>
+
+                <p>This like like reading the notes on all the plates in the warmer.</p>
+            </li>
+
+            <li>
+                <p><c>git stash pop</c> will put your changes back into the working directory and remove the entry from the stack.  It is up to you to make sure you are on the branch you want to be, and that your working directory is in the right state to accept these changes (or you may end up starting a merge you may not want).</p>
+
+                <p>This is like taking a plate out of the warmer.</p>
+            </li>
+
+            <li>
+                <p><c>git stash apply</c> will take the changes on the top of the stack and put them back into the working dirtectory, but it will <em>leave the original entry on top of the stash</em>.  RAB once ended up with duplicate copies of a set of changes in his working directory.  He thinks he did an <c>apply</c> and subsequently did a <c>pop</c>.  Maybe.</p>
+
+                <p>This is like magically duplicating the plate on top, and removing it, leaving the original still in the warmer.</p>
+            </li>
+
+            <li>
+                <p><c>git stash drop</c> will remove the changes on top of the stack and throw them away.  This can actually be very useful.  You may <c>add</c> and <c>commit</c> a variety of changes to your branch, but still have some paragraphs you do not really like, and decided  not to use, still polluting your working directory.  Simple.  Move the changes to the stash and immediately delete them, no message needed.  Careful, think twice, you really are deleting changes, though they may be recoverable with advanced techniques.</p>
+
+                <p>This is exactly like taking the top plate out and dropping it on the floor so it breaks into many unusable pieces.</p>
+            </li>
+
+            <li>
+                <p>There are many more actions you can take with the stash, but the above should be sufficient for intermediate <c>git</c> use.  Consult the usual sources for more advanced use.  Note that prior to the time around <c>git</c> version 1.6.0 changesets in the stash expired, but it appers that behavior has changed.  So don't panic if you see older posts that speak of expiration.</p>
+            </li>
+        </ul>
     </section>
 
     <section xml:id="tag-sign">
-        <title>Tagging Releases, Signing a Repository</title>
+        <title>(*) Tagging Releases, Signing a Repository</title>
 
         <p></p>
     </section>
 
     <section>
-        <title>Who Did What, and When?</title>
+        <title>(*) Who Did What, and When?</title>
 
         <p>blame, log with diff-filter, "When a file was added to the repo", </p>
     </section>
 
     <section>
-        <title>Where Did it All Go Wrong?</title>
+        <title>(*) Where Did it All Go Wrong?</title>
 
         <p>git bisect</p>
     </section>
 
     <section>
-        <title>File Management</title>
+        <title>(*) File Management</title>
 
         <p>rm, mv</p>
     </section>
 
     <section>
-        <title>Binary Files</title>
+        <title>(*) Binary Files</title>
 
         <p></p>
     </section>
 
     <section>
-        <title>Everything: The reflog</title>
+        <title>(*) Everything: The reflog</title>
 
         <p></p>
     </section>
 
     <section xml:id="readme">
-        <title>README on GitHub</title>
+        <title>(*) README on GitHub</title>
 
         <p></p>
     </section>
 
     <section>
-        <title>Log Display Options</title>
+        <title>(*) Log Display Options</title>
 
         <p><c>--pretty=oneline</c>, <c>--graph</c></p>
     </section>

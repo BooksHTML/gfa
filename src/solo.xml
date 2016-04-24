@@ -29,7 +29,7 @@
             <p><c>git</c> manages changes to your files, and those changes are accumulated in files, whose state may change in ways you are not accustomed to.</p>
         </blockquote>
 
-        <p>If that sounds scary, realize that RAB is self-taught when it comes to <c>git</c> and has never lost any work.  He has panicked.  But he has gained valuable experience puzzling his way out of some jams (see <xref ref="oops" />).  And once he ended up applying the same collection of changes twice, mysteriously getting two of everything in a chapter (see <xref provisional="stash-pop-or-apply" />).</p>
+        <p>If that sounds scary, realize that RAB is self-taught when it comes to <c>git</c> and has never lost any work.  He has panicked.  But he has gained valuable experience puzzling his way out of some jams (see <xref ref="oops" />).  And once he ended up applying the same collection of changes twice, mysteriously getting two of everything in a chapter (see <xref ref="the-stash" />).</p>
     </introduction>
 
     <section>
