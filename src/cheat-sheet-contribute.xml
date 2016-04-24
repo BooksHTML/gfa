@@ -11,15 +11,19 @@
     <title>Cheat sheet for contributing to a project</title>
 
     <p>You have forked a repository and cloned your fork to your laptop.
+You have <c>origin</c> as a remote to your fork, and <c>upstream</c>
+as a remote to the official repository for the project.
 Below are all the steps you typically need for contributing to the project.</p>
 
 
-    <list xml:id="eight-step">
-        <title>The Eight-Step: Adding Commits to the Definitive Repository</title>
+    <list>
+<!--
+        <title>Easy steps for contributing to a repository</title>
 
         <introduction>
-            <p>We will describe the process of moving commits on a <q>topic</q> branch in a local repository to the master branch of a definitive repository where you have permission to push, and the repository is configured as a remote in your local repository.  Eventually, the logic of this procedure will become second nature.</p>
+            <p>Below is a quick guide for those who already understand the basics of git.</p>
         </introduction>
+-->
 
         <ol>
             <li>
@@ -36,37 +40,39 @@ Below are all the steps you typically need for contributing to the project.</p>
             </li>
             <li>
                 <p><c>git checkout &lt;branchname&gt;</c></p>
-                <p>Now you are on a new branch called &lt;branchname&gt;</p>
+                <p>Now you are on a new branch called &lt;branchname&gt;.</p>
             </li>
 
             <li>
                 <p>Make the changes you planned. When appropriate do</p>
-                <p><c>git add &lt;file1&gt; &lt;file2&gt; &dots;</c></p>
+                <p><c>git add &lt;file1&gt; &lt;file2&gt; ...</c></p>
+                <p><c>git commit -m "useful commit message"</c></p>
             </li>
+            <li xml:id="check-before-submitting">
+                <p>Check your work: run <c>latex</c>, or compile the code,
+or whatever is appropriate for the project.
+Save yourself the embarrasment of having a pull request rejected because
+you submitted something broken!</p>
+           </li>
+
             <li>
-                <p><c>git rebase master</c></p>
-                <p>Move the branch point of the topic branch to the tip of updated master.  Resolve any conflicts which occur during the replay phase of the rebase.</p>
+                <p><c>git pull upstream master</c></p>
+                <p>Do that in case new material has been added since the
+last time you pulled.
+It can't hurt to repeat step<nbsp /><xref ref="check-before-submitting" />.</p>
             </li>
 
             <li>
-                <p><c>git checkout master</c></p>
-                <p>Move back to the local master branch in preparation for modifying it.</p>
+                <p><c>git push origin &lt;branchname&gt;</c></p>
+                <p>And then go to your fork on GitHub and make a pull request..</p>
+                <p>Be sure to describe how to see your changes in the final product.</p>
             </li>
 
             <li>
-                <p><c>git branch -d topic</c></p>
-                <p>The topic branch pointer is obsolete as it duplicates the master branch pointer.</p>
+                <p> When in doubt, do <c>git status</c> to find out what branch you
+are on, and to see if there are uncommitted changes.</p>
             </li>
 
-            <li>
-                <p><c>git merge topic</c></p>
-                <p>Use a fast-forward merge to bring the topic branch into the master branch.</p>
-            </li>
-
-            <li>
-                <p><c>git push</c></p>
-                <p>Move new commits on the local master branch to the master branch of the definitive repository.</p>
-            </li>
         </ol>
     </list>
 
