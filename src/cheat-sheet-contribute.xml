@@ -58,8 +58,8 @@ you submitted something broken!</p>
             <li>
                 <p><c>git pull upstream master</c></p>
                 <p>Do that in case new material has been added since the
-last time you pulled.
-It can't hurt to repeat step<nbsp /><xref ref="check-before-submitting" />.</p>
+last time you pulled.  If you pulled in new material,
+it can't hurt to repeat step<nbsp /><xref ref="check-before-submitting" />.</p>
             </li>
 
             <li>
