@@ -29,9 +29,9 @@ Below are the typical steps to evaluate pull requests.</p>
             </li>
 
             <li>
-                <p>If there are merge conflicts, write a brief message and click the <c>Comment</c>.</p>
-            <p>There is nothing else to do until you get an email with either a reply
-to your comment, or an indication that the pull request has been updated.</p>
+                <p>If there are merge conflicts, write a brief message and click <c>Comment</c>.</p>
+            <p>Now there is nothing else to do until you get an email either replying
+to your comment, or telling you that the pull request has been updated.</p>
             </li>
 
             <li>
@@ -41,7 +41,7 @@ for the project, click back to <c>Conversation</c> and leave a helpful <c>Commen
             </li>
 
             <li><p>If the changes look reasonable, then you have to actually check
-that they function as advertised. Go to your laptop and do:</p>
+that the new material function as advertised. Go to your laptop and do:</p>
                 <p><c>git checkout master</c></p>
                 <p><c>git pull upstream master</c></p>
                 <p>Then click back to <c>Conversation</c> and click on
@@ -53,11 +53,11 @@ They will look something like this:</p>
 
             <li>
                 <p>Check their contribution:
-run <c>latex</c>, or compile their code, or whatever is appropriate.</p>
+run <c>latex</c>, or compile the code, or whatever is appropriate.</p>
             </li>
             <li>
-                <p>If you aren't happy with what you see, leave a helpful comment</p>
-                <p>If everything looks good, then click <c>Merge pull request</c>,
+                <p>If you aren't happy with what you see, leave a helpful comment.</p>
+                <p>But if everything looks good, click <c>Merge pull request</c>,
 leave a comment if appropriate, and then click <c>Confirm merge</c>.</p>
             </li>
 
