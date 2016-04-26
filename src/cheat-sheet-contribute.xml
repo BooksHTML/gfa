@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This file is part of the book                      -->
+<!--                                                    -->
+<!--         Git for Authors                            -->
+<!--                                                    -->
+<!-- Copyright (C) 2016  Robert A. Beezer, David Farmer -->
+<!-- See the file COPYING for copying conditions.       -->
+
+<appendix xml:id="cheat-sheet-contributors">
+    <title>Cheat sheet for contributing to a project</title>
+
+    <p>You have forked a repository and cloned your fork to your laptop.
+You have <c>origin</c> as a remote to your fork, and <c>upstream</c>
+as a remote to the official repository for the project.
+Below are all the steps you typically need for contributing to the project.</p>
+
+
+    <list>
+<!--
+        <title>Easy steps for contributing to a repository</title>
+
+        <introduction>
+            <p>Below is a quick guide for those who already understand the basics of git.</p>
+        </introduction>
+-->
+
+        <ol>
+            <li>
+                <p><c>git checkout master</c></p>
+            </li>
+
+            <li>
+                <p><c>git pull upstream master</c></p>
+                <p>Now you are on your master branch and have the latest version of the project.</p>
+            </li>
+
+            <li>
+                <p><c>git branch &lt;branchname&gt;</c></p>
+            </li>
+            <li>
+                <p><c>git checkout &lt;branchname&gt;</c></p>
+                <p>Now you are on a new branch called &lt;branchname&gt;.</p>
+            </li>
+
+            <li>
+                <p>Make the changes you planned. When appropriate do</p>
+                <p><c>git add &lt;file1&gt; &lt;file2&gt; ...</c></p>
+                <p><c>git commit -m "useful commit message"</c></p>
+            </li>
+            <li xml:id="check-before-submitting">
+                <p>Check your work: run <c>latex</c>, or compile the code,
+or whatever is appropriate for the project.
+Save yourself the embarrassment of having a pull request rejected because
+you submitted something broken!</p>
+           </li>
+
+            <li>
+                <p><c>git pull upstream master</c></p>
+                <p>Do that in case new material has been added since the
+last time you pulled.  If you pulled in new material,
+it can't hurt to repeat step<nbsp /><xref ref="check-before-submitting" />.</p>
+            </li>
+
+            <li>
+                <p><c>git push origin &lt;branchname&gt;</c></p>
+                <p>And then go to your fork on GitHub and make a pull request..</p>
+                <p>Be sure to describe how to see your changes in the final product.</p>
+            </li>
+
+            <li>
+                <p> When in doubt, do <c>git status</c> to find out what branch you
+are on, and to see if there are uncommitted changes.</p>
+            </li>
+
+        </ol>
+    </list>
+
+
+
+
+</appendix>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This file is part of the book                      -->
+<!--                                                    -->
+<!--         Git for Authors                            -->
+<!--                                                    -->
+<!-- Copyright (C) 2016  Robert A. Beezer, David Farmer -->
+<!-- See the file COPYING for copying conditions.       -->
+
+<appendix xml:id="cheat-sheet-overlord">
+    <title>Cheat sheet for managing pull requests</title>
+
+    <p>You are one of the people in charge of a GitHub repository.
+Below are the typical steps to evaluate pull requests.</p>
+
+
+    <list>
+<!--
+        <title>Easy steps for contributing to a repository</title>
+
+        <introduction>
+            <p>Below is a quick guide for those who already understand the basics of git.</p>
+        </introduction>
+-->
+
+        <ol>
+            <li>
+                <p>Click on the <c>Pull requests</c> tab, and then choose a pull request.</p>
+            </li>
+
+            <li>
+                <p>If there are merge conflicts, write a brief message and click <c>Comment</c>.</p>
+            <p>Now there is nothing else to do until you get an email either replying
+to your comment, or telling you that the pull request has been updated.</p>
+            </li>
+
+            <li>
+                <p>Click on the <c>Files changed</c> sub-tab, and carefully look at
+all the changes.  If there are any errors or violations of the official  style
+for the project, click back to <c>Conversation</c> and leave a helpful <c>Comment</c>.</p>
+            </li>
+
+            <li><p>If the changes look reasonable, then you have to actually check
+that the new material function as advertised. Go to your laptop and do:</p>
+                <p><c>git checkout master</c></p>
+                <p><c>git pull upstream master</c></p>
+                <p>Then click back to <c>Conversation</c> and click on
+<c>command line instructions</c>.  Copy and paste those into the command line.
+They will look something like this:</p>
+<p><c>git checkout -b fredstro-solutions-chap-6 master</c></p>
+<p><c>git pull https://github.com/fredstro/calculus.git solutions-chap-6</c></p>
+            </li>
+
+            <li>
+                <p>Check their contribution:
+run <c>latex</c>, or compile the code, or whatever is appropriate.</p>
+            </li>
+            <li>
+                <p>If you aren't happy with what you see, leave a helpful comment.</p>
+                <p>But if everything looks good, click <c>Merge pull request</c>,
+leave a comment if appropriate, and then click <c>Confirm merge</c>.</p>
+            </li>
+
+            <li>
+                <p>You are done, except don't forget to <c>git checkout master</c>
+and then pull in the new material.</p>
+            </li>
+
+        </ol>
+    </list>
+
+
+
+
+</appendix>

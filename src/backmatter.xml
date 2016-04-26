@@ -12,6 +12,8 @@
     <xi:include href="git-start.xml" />
     <xi:include href="github-start.xml" />
     <xi:include href="quick-reference.xml" />
+    <xi:include href="cheat-sheet-contribute.xml" />
+    <xi:include href="cheat-sheet-overlord.xml" />
     <xi:include href="principle-list.xml" />
     <xi:include href="resources.xml" />
 
