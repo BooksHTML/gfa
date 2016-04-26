@@ -41,7 +41,7 @@ for the project, click back to <c>Conversation</c> and leave a helpful <c>Commen
             </li>
 
             <li><p>If the changes look reasonable, then you have to actually check
-that the new material function as advertised. Go to your laptop and do:</p>
+that the new material functions as advertised. Go to your laptop and do:</p>
                 <p><c>git checkout master</c></p>
                 <p><c>git pull upstream master</c></p>
                 <p>Then click back to <c>Conversation</c> and click on
