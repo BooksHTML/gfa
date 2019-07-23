@@ -45,7 +45,7 @@
 
                 <p><xref ref="github-clone" /> contains the necessary instructions for this paragraph, but are more general, so read them and this paragraph through completely before doing anything.  In particular, ignore any discussion of <q>forks</q> until <xref ref="control" />.  Alice should make a copy of the fresh repository onto her work computer, and Bob should do the same.  If you are playing both sides this exercise yourself, copy the repository once, and then rename the <c>banking-paper</c> directory to <c>alice-banking</c>.  Then copy again and rename the resulting directory as <c>bob-banking</c>.  These changes have zero effect on how your repository behaves, but you will need to mentally figure out which files you should be working with in the remainder of the exercise.</p>
 
-                <p>In principle, Alice and Bob are totally setup and organized, and never even need to visit the GitHub site ever again.  But GitHub has some nice tools and Alice and Bob have decided to be 100<percent /> transparent in their work.  A GitHub <term>issue</term> is like a topic on an online discussion forum.  It is designed mostly for reporting and discussing bugs in software, or requesting and implementing new features in software.  But they can also be used for planning and discussion.  Alice and Bob would like to plan their writing as an open discussion on GitHub, deciding that Alice will concentrate on the introduction since she is the better overall writer, and Bob will therefore get started on the section with the details of the vulnerability.  They will work more closely on the final section containing recommendations.</p>
+                <p>In principle, Alice and Bob are totally setup and organized, and never even need to visit the GitHub site ever again.  But GitHub has some nice tools and Alice and Bob have decided to be 100% transparent in their work.  A GitHub <term>issue</term> is like a topic on an online discussion forum.  It is designed mostly for reporting and discussing bugs in software, or requesting and implementing new features in software.  But they can also be used for planning and discussion.  Alice and Bob would like to plan their writing as an open discussion on GitHub, deciding that Alice will concentrate on the introduction since she is the better overall writer, and Bob will therefore get started on the section with the details of the vulnerability.  They will work more closely on the final section containing recommendations.</p>
 
                 <p>So in our exercise, Alice should create a branch off of <c>master</c> named <c>intro</c>, create a file <c>intoduction.txt</c>, add it to her branch, make some edits, commit the changes, and so on.  Bob should do similarly but make a branch off <c>master</c> named <c>vulnerable</c> where he adds and edits a file <c>vulnerability.txt</c> as a series of commits.  Recall that <xref ref="principle-branch-often" /> says Alice and Bob should do all of their work on branches.</p>
 
@@ -54,39 +54,39 @@
                 <!-- origin  https://github.com/rbeezer/banking-paper.git -->
                 <p>But first, a bit of diagnostic work.  Alice's repository was copied from GitHub and therefore is aware of its heritage.</p>
 
-                <console>
+                <sidebyside><console>
                     <prompt>alice@work:~/papers/banking-paper$ </prompt>
                     <input>git remote -v</input>
                     <output>
                     origin  https://github.com/alice-jones/banking-paper.git (fetch)
                     origin  https://github.com/alice-jones/banking-paper.git (push)
                     </output>
-                </console>
+                </console></sidebyside>
 
                 <p>Alice's local version of the repository has a <term>remote</term> that carries the information necessary to communicate with the definitive repository.  Since Bob made a similar copy he has an <em>identical</em> remote (remember the co-authors are sharing a definitive repository in Alice's account).  The remote goes by the name <c>origin</c>, which is customary, similar to the <c>master</c> branch.  You can add as many remotes as you like, putting your repository in contact with as many different copies as you can think of.</p>
 
-                <console>
+                <sidebyside><console>
                     <prompt>alice@work:~/papers/banking-paper$ </prompt>
                     <input>git checkout master</input>
                     <output>
                     Switched to branch 'master'
                     Your branch is up-to-date with 'origin/master'.
                     </output>
-                </console>
+                </console></sidebyside>
 
                 <p>Notice that <c>git</c> seems to know something about the state of your local <c>master</c> in relation to the <c>origin/master</c> in the copy on GitHub.  Let us check anyway.</p>
 
-                <console>
+                <sidebyside><console>
                     <prompt>alice@work:~/papers/banking-paper$ </prompt>
                     <input>git pull</input>
                     <output>
                     Already up-to-date.
                     </output>
-                </console>
+                </console></sidebyside>
 
                 <p>So Alice attempted to update her local <c>master</c> branch from the definitive repository on GitHub, but there was nothing new to use as an update (her <c>master</c> is <c>up-to-date</c>).  As we suspected (or hoped!), Bob is still working on the technical details locally.  In case it was not obvious, we did not have to bother Bob with an email asking where he was with his task.  Now Alice is going to merge her <c>intro</c> branch into <c>master</c>, which will be a fast-forward merge since <c>master</c> has not evolved beyond her original branch point for <c>intro</c>.</p>
 
-                <console>
+                <sidebyside><console>
                     <prompt>alice@work:~/papers/banking-paper$ </prompt>
                     <input>git merge intro</input>
                     <output>
@@ -95,11 +95,11 @@
                      1 file changed, 25 insertions(+), 0 deletions(-)
                      create mode 100644 introduction.txt
                     </output>
-                </console>
+                </console></sidebyside>
 
                 <p>Alice has incorporated her introduction to the <c>master</c> branch, but now will make it part of the definitive repository with a <c>push</c>.  Note that Alice is still on her <c>master</c> branch.</p>
 
-                <console>
+                <sidebyside><console>
                     <prompt>alice@work:~/papers/banking-paper$ </prompt>
                     <input>git push</input>
                     <output>
@@ -113,7 +113,7 @@
                     To https://github.com/alice-jones/banking-paper.git
                        80a9eb3..1aaedaf  master -> master
                     </output>
-                </console>
+                </console></sidebyside>
 
                 <p>Notice that Alice must sign in to GitHub, since only she and Bob are allowed to modify the repository (the world can view it and copy it, not modify it).  So Alice has placed her introduction in the definitive repository without any additional coordination with Bob.  Time is important, so Alice initiates an issue on GitHub to discuss their recommendations, which will now interrupt Bob, but they need to form a plan.  However, without waiting for Bob's reply, Alice creates a new branch off <c>master</c> named <c>last-chapter</c> where she simply adds an empty file named <c>recommendations.txt</c>.  She repeats the steps above and with a fast-forward merge, updates her local <c>master</c> and pushes it to the definitive repository on GitHub.  Alice can now clean up by deleting her <c>intro</c> and <c>last-chapter</c> branch pointers that have become obsolete.</p>
 
@@ -133,18 +133,18 @@
 
                 <p>Back to our exercise, now Bob has finished up his section, so he wants to make it part of the definitive repository.  He suspects Alice has finished the introduction, since she was eager to discuss the recommendations.  So, just like Alice, he is going to update his <c>master</c> branch.</p>
 
-                <console>
+                <sidebyside><console>
                     <prompt>bob@laptop:~/publications/banking-paper$ </prompt>
                     <input>git checkout master</input>
                     <output>
                     Switched to branch 'master'
                     Your branch is up-to-date with 'origin/master'.
                     </output>
-                </console>
+                </console></sidebyside>
 
                 <p>Notice that this particular <c>up-to-date</c> message is misleading.  Bob will really check with a pull.  Remember that Bob has a remote named <c>origin</c>, with connection information for the definitive repository.  (Why doesn't a pull require a login?)</p>
 
-                <console>
+                <sidebyside><console>
                     <prompt>bob@laptop:~/publications/banking-paper$ </prompt>
                     <input>git pull</input>
                     <output>
@@ -162,11 +162,11 @@
                      create mode 100644 introduction.txt
                      create mode 100644 recommendations.txt
                     </output>
-                </console>
+                </console></sidebyside>
 
                 <p>Bob just picked up Alice's introduction section and empty recommendations section from the definitive repository.  That's good.  Do you see the subtlety?  Think carefully about it for a minute, this is a major concept.  The branch pointer <c>master</c> in Bob's local repository just advanced two commits forward from the branch point of the <c>vulnerable</c> branch he has been working on.  Bob sees:</p>
 
-                <console>
+                <sidebyside><console>
                     <prompt>bob@laptop:~/publications/banking-paper$ </prompt>
                     <input>git show-branch</input>
                     <output>
@@ -178,11 +178,11 @@
                      + [vulnerable] Vulnerability section
                     *+ [master~2] Initial commit
                     </output>
-                </console>
+                </console></sidebyside>
 
                 <p>Before Bob pushes his technical section, he will rebase his <c>vulnerable</c> branch onto <c>master</c>.  This would normally risk a <term>merge conflict</term>, but he knows Alice has work only in <c>introduction.txt</c>, his new work is only in <c>vulnerability.txt</c>, and <c>recommendations.txt</c> is empty.  So Bob switches to <c>vulnerable</c>, rebases onto <c>master</c>, switches to <c>master</c>, merges vulnerable into <c>master</c> (which is a fast-forward merge, as expected), pushes <c>master</c> to <c>origin/master</c>, and cleans up by deleting the obsolete <c>vulnerable</c> branch pointer.</p>
 
-                <console>
+                <sidebyside><console>
                     <prompt>bob@laptop:~/publications/banking-paper$ </prompt>
                     <input>git checkout vulnerable</input>
                     <output>
@@ -232,7 +232,7 @@
                     <output>
                     Deleted branch vulnerable (was bceacaa).
                     </output>
-                </console>
+                </console></sidebyside>
 
                 <p>That looks complicated, but you will do it over and over if you collaborate with this model.  Update master from the definitive repository, rebase (advance) your working branch to the tip of master, fast-forward merge your working branch into your local master, then push your improved master to the definitive repository.  The clear and present danger here is to forget the first step, updating your master.  You may have little idea what has happened to the definitive repository if you have had your head down working, so you need to <em>always</em> remember to update before interacting with the definitive repository.</p>
             </statement>
@@ -272,7 +272,7 @@
 
                 <p>So the definitive repository has Alice's recommendation section, while Bob's recommendations are still local to his repository, and <c>origin/master</c> has advanced beyond Bob's local <c>master</c>.  Here is the transcript for Bob (again).</p>
 
-                <console>
+                <sidebyside><console>
                     <prompt>bob@laptop:~/publications/banking-paper$ </prompt>
                     <input>git checkout master</input>
                     <output>
@@ -321,7 +321,7 @@
                     If you prefer to skip this patch, run "git rebase --skip" instead.
                     To check out the original branch and stop rebasing, run "git rebase --abort".
                     </output>
-                </console>
+                </console></sidebyside>
 
                 <p>Boom!  The scariest thing that can happen in <c>git</c>.  But you know we engineered this conflict to happen and we are not going to panic.  (If you do want to panic, try <c>git rebase --abort</c> as suggested and when you collect yourself and settle down, come back to try the <c>rebase</c> again.)</p>
 
@@ -331,7 +331,7 @@
 
                 <p>Done resolving the conflict, Bob's <c>recommend</c> branch now comes off the tip of master and is positioned for a fast-forward merge that he can then push to <c>origin/master</c>.</p>
 
-                <console>
+                <sidebyside><console>
                     <!--  -->
                     <prompt>bob@laptop:~/publications/banking-paper$ </prompt>
                     <input>git show-branch</input>
@@ -387,7 +387,7 @@
                     <output>
                     [master] Bob recommends
                     </output>
-                </console>
+                </console></sidebyside>
 
                 <p>Of course, now Alice does not have the edits Bob made when adding his recommendations and resolving the conflict in the rebase.  But by now this should be routine. Alice just pulls from <c>origin/master</c> and is up-to-date.  Now, all three repositories have exactly the same changes on their respective <c>master</c> branches.</p>
             </statement>

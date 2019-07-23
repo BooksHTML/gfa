@@ -19,16 +19,20 @@
     <section>
         <title>Installing Command-Line Git</title>
 
-        <p>We are not going to be much help here, as we are not going to try to cover all the bases.  Use your operating system's package manager or other tools to install command-line <c>git</c>.  A good place to start is the <url ref="https://git-scm.com/downloads">download area</url> of the canonical <c>git</c> site <xref ref="git-site" />, or see the <booktitle>Pro Git</booktitle> book <xref ref="git-book" detail="Section 1.5" />.</p>
+        <p>We are not going to be much help here, as we are not going to try to cover all
+        the bases.  Use your operating system's package manager or other tools to install
+        command-line <c>git</c>.  A good place to start is the <url
+        ref="https://git-scm.com/downloads">download area</url> of the canonical <c>git</c>
+        site <xref ref="git-site" />, or see the <pubtitle>Pro Git</pubtitle> book <xref ref="git-book" detail="Section 1.5" />.</p>
 
         <p>You can verify a successful installation with:</p>
-        <console>
+        <sidebyside><console>
             <prompt>rob@lava:~$ </prompt>
             <input>git --version</input>
             <output>
             git version 2.5.0
             </output>
-        </console>
+        </console></sidebyside>
         <p>Your version number will likely be different.</p>
     </section>
 
@@ -39,45 +43,46 @@
 
         <p>First you need to identify yourself as the author of commits.  Even if your repository will be private for a while, someday you may open it up to collaborators, and you would rather not go back and edit <em>all</em> of your commits.  Fortunately, <c>git</c> makes it easy.  Use your real name, and use an email address that you expect to own for a long time.  Together, these two pieces of information should identify you across all the repositories you will ever contribute to, and across all the repositories ever made.</p>
 
-        <console>
+        <sidebyside><console>
             <prompt>rob@lava:~$ </prompt>
             <input>git config --global user.name "Robert A. Beezer"</input>
             <prompt>rob@lava:~$ </prompt>
             <input>git config --global user.email beezer@pugetsound.edu</input>
-        </console>
+        </console></sidebyside>
 
         <p>Notice that I use different values in practice, rather than the example here.  In the earlier days of electronic mail, my institution used the domain name <c>ups.edu</c>, often confusing us with the shipping company, <c>ups.com</c>.  So I prefer to use the older form that I was known by in other settings for many years.  Notice the quotes around my name, in order to include the spaces as part of the text of my name.</p>
 
         <p><c>git</c> is inclined to drop you into an editor for various tasks.  We try to avoid this, so often show you the <c>-m</c> switch, followed by a short quote-protected message you can supply as part of a command.  But you will need to use an editor for various tasks (such as an interactive rebase) so you do not want to suddenly find yourself in a system-default editor (like <c>vi</c> or <c>emacs</c>) that you do not understand.  I know the basics of an enhanced version of <c>vi</c>, known as <c>vim</c>, so I use the command-line name of this program in the setting below.</p>
 
-        <console>
+        <sidebyside><console>
             <prompt>rob@lava:~$ </prompt>
             <input>git config --global core.editor vim</input>
-        </console>
+        </console></sidebyside>
 
         <!-- http://stackoverflow.com/questions/13148066/warning-push-default-is-unset-its-implicit-value-is-changing-in-git-2-0 -->
         <p>There are other settings, and you can check yours with <c>git config --list</c>.  One last thing.  If your version of <c>git</c> happens to be prior to version 2.0, then check your configurations for the value of <c>push.default</c> and ensure that it is <c>simple</c>.  It will be important later.</p>
 
-        <p>More details, and especially for Windows systems, can be found in the <booktitle>Pro Git</booktitle> book <xref ref="git-book" detail="Section 1.6" /></p>
+        <p>More details, and especially for Windows systems, can be found in the
+        <pubtitle>Pro Git</pubtitle> book <xref ref="git-book" detail="Section 1.6" /></p>
     </section>
 
     <section>
         <title>Initializing a Git Repository</title>
 
         <p>To begin a new repository, create a directory where you want your files to live.  We have been using <c>~/books/ppw</c> in our examples.  Then make that the default directory in a command-line session.</p>
-        <console>
+        <sidebyside><console>
             <prompt>rob@lava:~/books/ppw$ </prompt>
             <input>git init</input>
             <output>
             Initialized empty Git repository in /home/rob/books/ppw/.git/
             </output>
-        </console>
+        </console></sidebyside>
         <p>Naturally, there will be no commits in your repository.</p>
-        <console>
+        <sidebyside><console>
             <prompt>rob@lava:~/books/ppw$ </prompt>
             <input>git show-branch</input>
             <output>No revs to be shown.</output>
-        </console>
+        </console></sidebyside>
         <p>But once you do make a commit, there will be a <c>master</c> branch and the root commit will get special identification as such.  That's it, you are ready to go.</p>
     </section>
 
