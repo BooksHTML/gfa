@@ -56,7 +56,7 @@
 
         <p>Now open a terminal on your local machine where you can use the command-line.  Navigate to a directory, where a new repository-specific directory makes sense for your work.  In our first example, Alice might navigate to her existing <c>~/papers/</c> directory, where she expects to soon have a <c>~/papers/banking-paper</c> directory.  OK, all set.  Making a copy is known as a <term>clone</term>.  (And a fork is just a special type of clone.)</p>
 
-        <console>
+        <sidebyside><console>
             <prompt>alice@work:~/papers$ </prompt>
             <input>git clone https://github.com/alice-jones/banking-paper.git</input>
             <output>
@@ -66,7 +66,7 @@
             Unpacking objects: 100% (3/3), done.
             Checking connectivity... done.
             </output>
-        </console>
+        </console></sidebyside>
 
         <p>The above may take a long time for a large repository (many large files, or a long history of many, many changes).  The output above is for an essentially empty repository.  Now verify the expected directory exists and has the expected files in it.</p>
     </section>
