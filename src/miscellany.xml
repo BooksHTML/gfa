@@ -31,7 +31,7 @@
 
         <p>The <term>stash</term> is a <term>stack</term>, a last-in, first-out arrangment, like a stack of plates in a warmer in a cafeteria.  At any time you can <term>save</term> your changes in a dirty directory with the command <c>git stash save</c> and they are removed from the working directory, thus making the directory clean again, and are saved as a changese in the stash.  This great if you just want to wander off some place else in your repository and you will be right back to your work-in-progress.  So we talk of <q>stashing your changes</q> as a temporary measure.</p>
 
-        <p>When you are a begineer, the stash is very alluring.  Resist the siren call.  It is not a cure-all and there is usually a better way to juggle two things at once.  Remember the three branches of <xref ref="hero-heroine-edit" />?  Here are some notes (which will not explain everything carefully).  Since the stash manipulates the working directory all at once, you have less control than you do with commits, even if the stash seems less permanent.</p>
+        <p>When you are a beginner, the stash is very alluring.  Resist the siren call.  It is not a cure-all and there is usually a better way to juggle two things at once.  Remember the three branches of <xref ref="hero-heroine-edit" />?  Here are some notes (which will not explain everything carefully).  Since the stash manipulates the working directory all at once, you have less control than you do with commits, even if the stash seems less permanent.</p>
 
         <ul>
             <li>

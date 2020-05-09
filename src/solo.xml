@@ -19,7 +19,7 @@
             <title>Git Manages Changes</title>
 
             <statement>
-                <p><c>git</c> manages collections of changes to your files.  And it does so in linear sequences of incremental changes that are always consistent.</p>
+                <p><c>git</c> manages collections of changes to your files.  It does so in linear sequences of incremental changes that are always consistent.</p>
             </statement>
         </principle>
 
