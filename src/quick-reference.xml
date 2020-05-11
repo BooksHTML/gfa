@@ -47,13 +47,13 @@
             </li>
 
             <li>
-                <p><c>git branch -d topic</c></p>
-                <p>The topic branch pointer is obsolete as it duplicates the master branch pointer.</p>
+                <p><c>git merge topic</c></p>
+                <p>Use a fast-forward merge to bring the topic branch into the master branch.</p>
             </li>
 
             <li>
-                <p><c>git merge topic</c></p>
-                <p>Use a fast-forward merge to bring the topic branch into the master branch.</p>
+                <p><c>git branch -d topic</c></p>
+                <p>The topic branch pointer is obsolete as it duplicates the master branch pointer.</p>
             </li>
 
             <li>
