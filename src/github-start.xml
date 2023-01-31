@@ -50,9 +50,9 @@
         <p>You can also, and often may prefer, to copy a repository to your local computer.  You might like to write while on airplanes, on your desktop at work, or on your laptop at home in bed.  Then you can even collaborate with yourself and keep all those repositories syncronized.  So you could have copies of your project all over the place.</p>
 
         <!-- https://github.com/rbeezer/banking-paper.git -->
-        <p>It is easy to copy a <c>git</c> repository generally, and dead-simple to copy a GitHub-hosted repository.  To copy a GitHub repository, you need to know the URL.  It is a bit hidden.  On the main page for a project (yours, or somebody else's), you will find a box about a third of the way down, to the right, but just inside of  <c>Download ZIP</c>.  It is prefixed by <c>HTTPS</c>, but the distinguishing contents may be obscured.  You are looking for something like<pre>
+        <p>It is easy to copy a <c>git</c> repository generally, and dead-simple to copy a GitHub-hosted repository.  To copy a GitHub repository, you need to know the URL.  It is a bit hidden.  On the main page for a project (yours, or somebody else's), locate and click on the green Code button, and the URL should be visible.  You are looking for something like<pre>
         https://github.com/alice-jones/banking-paper.git
-        </pre>which would fit our first GitHub example.  When you find it, highlight it and copy it to your clipboard.</p>
+        </pre>which would fit our first GitHub example.  Copy the URL to your clipboard.</p>
 
         <p>Now open a terminal on your local machine where you can use the command-line.  Navigate to a directory, where a new repository-specific directory makes sense for your work.  In our first example, Alice might navigate to her existing <c>~/papers/</c> directory, where she expects to soon have a <c>~/papers/banking-paper</c> directory.  OK, all set.  Making a copy is known as a <term>clone</term>.  (And a fork is just a special type of clone.)</p>
 
