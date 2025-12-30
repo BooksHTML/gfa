@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<publication>
+    <common>
+        <tableofcontents level="1"/>
+    </common>
+
+   <source>
+        <directories external="external" generated="generated"/>
+    </source>
+
+    <html>
+        <knowl exercise-inline="no"/>
+    </html>
+
+</publication>
